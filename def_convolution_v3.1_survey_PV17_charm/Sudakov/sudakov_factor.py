@@ -113,7 +113,7 @@ class Soft:
 	def analytic_sudakov(self,bt):
 	
 		if self.nf==3:lbd_qcd = 0.2123 ## nf= 3
-		elif self.nf==4:lbd_qcd = 0.220 ## nf=4
+		elif self.nf==4:lbd_qcd = 0.1737 ## nf=4
 
 		beta0 = (11*self.CA - 4*self.Tf*self.nf)/3  ## 4 pi beta0
 		gammad1 = 6*self.CF 

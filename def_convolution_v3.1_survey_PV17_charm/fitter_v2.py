@@ -140,6 +140,7 @@ class fitter:
 
 		self.su2='no'
 		self.charm= 'no'
+		self.nf=3
 		self.scale = 10.58
 	def fit(self): 
 
@@ -172,6 +173,7 @@ class fitter:
 		lst.mdl_den = self.mdl_den
 
 		lst.su2 = self.su2
+		lst.nf=self.nf
 		#lst.charm = self.charm
 		lst.scale = self.scale 
 
@@ -622,6 +624,7 @@ ft.coef=0.27
 
 ft.su2='no'
 ft.charm= 'no'
+ft.nf=3
 ft.scale = 10.58
 ft.cut_h2= 5
 
@@ -639,6 +642,7 @@ ft2.mss_fix = True
 
 ft2.su2='no'
 ft2.charm= 'yes'
+ft2.nf=4
 ft2.scale = 10.58
 ft2.cut_h2= 5
 ft2.coef = 0.27
@@ -657,6 +661,7 @@ ht.mss_fix = True
 
 ht.su2='yes'
 ht.charm= 'yes'
+ht.nf=4
 ht.scale = 10.58
 ht.cut_h2= 5
 
