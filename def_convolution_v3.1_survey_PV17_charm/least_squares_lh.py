@@ -329,7 +329,15 @@ class least_sq:
 		#ratio=num/den	
 		#pol2=ratio*faxx
 		#print(pol2)
-		chi_sq= sum ((self.p_exp - pol2)**2/self.err**2)
+		fact=642/732
+		exp_pnts=self.p_exp
+		exp_pnts=exp_pnts*fact
+		
+		errors=self.err
+		errors=errors*fact
+
+
+		chi_sq= sum ((exp_pnts - pol2)**2/errors**2)
 		#chi_sq=round(chi_sq,4)
 		#print(chi_sq)
 		return chi_sq
