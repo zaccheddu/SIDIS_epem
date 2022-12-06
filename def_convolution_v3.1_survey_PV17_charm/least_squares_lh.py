@@ -192,8 +192,8 @@ class least_sq:
 		
 		
 		self.dataframe = unpol
-		self.nf=4
-		
+		self.nf=3 
+		self.correct='no'
 	def least_squares_lh(self,NUP,NDO,NST,NSEA,AUP,ADO,AST,ASEA,BUP,BDO,BST,BSEA,PP,MSS):  #chi-square lambda-had
 
 		#print(self.unp_cr)
@@ -206,6 +206,7 @@ class least_sq:
 		fnc.mdl_den = self.mdl_den 
 
 		fnc.g_k = self.g_k_2h 
+		fnc.charm=self.charm
 		fnc.nf=self.nf
 
 
@@ -329,7 +330,8 @@ class least_sq:
 		#ratio=num/den	
 		#pol2=ratio*faxx
 		#print(pol2)
-		fact=642/732
+		fact=1.
+		if self.correct=='yes':	fact=642/732
 		exp_pnts=self.p_exp
 		exp_pnts=exp_pnts*fact
 		

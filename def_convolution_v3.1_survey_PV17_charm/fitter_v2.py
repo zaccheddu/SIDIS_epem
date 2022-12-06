@@ -142,6 +142,8 @@ class fitter:
 		self.charm= 'no'
 		self.nf=3
 		self.scale = 10.58
+
+		self.correct='no'
 	def fit(self): 
 
 
@@ -176,7 +178,7 @@ class fitter:
 		lst.nf=self.nf
 		#lst.charm = self.charm
 		lst.scale = self.scale 
-
+		lst.correct = self.correct
 		#print(lst.unp_cr)
 		#print(self.charm)
 		#print(lst.dataframe)
@@ -552,10 +554,12 @@ class fitter:
 		values = np.append(values,chi_dof)
 
 		df.loc[len(df), :] = values
-		df.to_csv(r'fit_parameters/fit_'+str(self.type)+'_coef_'+ str(self.coef)+'_chi_'+str(chi_dof)+'__'+str(fit6.valid)+'_gk_'+str(self.g_k_2h)+'_su_'+str(self.su2)+'_charm'+str(self.charm) +'.csv',index=False)
+		df.to_csv(r'fit_parameters/fit_'+str(self.type)+'_coef_'+ str(self.coef)+'_chi_'+str(chi_dof)+'__'+str(fit6.valid)+'_gk_'+str(self.g_k_2h)+'_su_'+str(self.su2)+'_charm'+str(self.charm)\
+			+'_correction_'+str(self.correct) +'.csv',index=False)
 
 		
-		sourceFile = open(r'fit_parameters/fit_'+str(self.type)+'_coef_'+ str(self.coef)+'_chi_'+str(chi_dof)+'__'+str(fit6.valid)+'_gk_'+str(self.g_k_2h)+'_su_'+str(self.su2)+'_charm'+str(self.charm) +'.txt', 'w')
+		sourceFile = open(r'fit_parameters/fit_'+str(self.type)+'_coef_'+ str(self.coef)+'_chi_'+str(chi_dof)+'__'+str(fit6.valid)+'_gk_'+str(self.g_k_2h)+'_su_'+str(self.su2)+'_charm'+str(self.charm) \
+			+'_correction_'+str(self.correct)+'.txt', 'w')
 		print(fit6.init_params, file = sourceFile)
 		print(fit6, file = sourceFile)
 		#
@@ -587,7 +591,7 @@ class fitter:
 
 		print('SU2 simmetry = '+ str(self.su2),file = sourceFile)
 		print('Charm = '+ str(self.charm),file = sourceFile)
-
+		print('Correction_alpha_decay = '+ str(self.correct),file = sourceFile)
 		print('________________________',file = sourceFile)
 		
 		
@@ -619,14 +623,14 @@ ft.pp_down_lm = 0.
 ft.pp_up_lm  = 0.2
 ft.mss=0.
 ft.mss_fix = True
-
+ft.correct = 'yes'
 ft.coef=0.27
 
 ft.su2='no'
 ft.charm= 'no'
 ft.nf=3
 ft.scale = 10.58
-ft.cut_h2= 0
+ft.cut_h2= 5
 
 
 #ft.fit()
@@ -644,13 +648,16 @@ ft2.su2='no'
 ft2.charm= 'yes'
 ft2.nf=4
 ft2.scale = 10.58
-ft2.cut_h2= 0
+ft2.cut_h2= 5
 ft2.coef = 0.27
 ft2.ado=1.2
 ft2.ado_fix = False
-
+ft2.correct = 'yes'
 #ft2.bsea = 0.
 #ft2.bsea_fix = True
+
+
+
 ht.mdl_den = 'pwr_lw_star'
 ht.mdl_num = 'gauss'
 ht.pp =.1
@@ -663,7 +670,8 @@ ht.su2='yes'
 ht.charm= 'yes'
 ht.nf=4
 ht.scale = 10.58
-ht.cut_h2= 0
+ht.cut_h2= 5
+ht.correct = 'yes'
 
 ht.aup=0.
 ht.ado=0.

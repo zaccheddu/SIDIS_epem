@@ -33,7 +33,7 @@ class polarization :
 		self.mdl_num = 'gauss'
 	
 		self.charm ='no'
-        	
+		self.nf=3	
         	
         	
 	def denominator(self,had1,had2,z1,z2):
@@ -58,7 +58,7 @@ class polarization :
 		scl = Soft(1)
 		scl.bmax = self.bmax 
 		scl.scale = self.scale
-		scl.nf=4
+		scl.nf=self.nf
 
 		def fnc(btt):
 
@@ -131,6 +131,7 @@ class polarization :
 		scl.bmax = self.bmax 
 		scl.scale = self.scale
 		qT_max = self.scale*self.coef
+		scl.nf=self.nf
 
 		def fnc1(btt):
 
