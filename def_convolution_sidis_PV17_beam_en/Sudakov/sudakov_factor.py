@@ -10,10 +10,10 @@ import pycuba
 
 class Soft:
 
-	CA= 3.
-	CF= 4/3
-	nf= 3	#active flavors
-	Tr = 1/2	
+	#CA= 3.
+	#CF= 4/3
+	#nf= 3	#active flavors
+	#Tr = 1/2	
 	
 
 #	pdf=lhapdf.mkAlphaS("NNFF10_PIp_nlo")
@@ -22,9 +22,15 @@ class Soft:
 
 	def __init__(self,order,sep):
 
+
+		self.CA= 3.
+		self.CF= 4/3
+		self.nf= 4 #3	#active flavors
+		self.Tf = 1/2	
+
 		self.sep= sep   # GeV
 		
-		self.scale= 10.58  # GeV
+		#self.scale= 10.58  # GeV
 
 		self.a = 0.05 ## GeV**2
 
@@ -122,146 +128,9 @@ class Soft:
 		return mub
 
 
-#############################################################################
-#
-#	factor non glob logarithm
-#_________________________________________________
 
-
-	def non_glob(self,qq,bt):
-		#print(bt)
-		out = array([])	
-		if type(bt)==float or type(bt)== np.float64 :bt=array([bt])
-		for bb in bt: 
-			#print(bb)
-			bmax=self.bmax
-			
-			mub = self.mu_b(bb)
-			alpha_mu = self.pdf.alphasQ(mub)
-			alpha_q = self.pdf.alphasQ(qq)
-
-			beta_0 = 11/3*self.CA - 4/3*self.Tr*self.nf
-
-			u = np.log(alpha_mu/alpha_q)/beta_0
-			
-			a = 0.85*self.CA
-			b = 0.86*self.CA
-			c = 1.33
-			
-			au2 = (a*u)**2
-			buc = (b*u)**c 
-			
-			fct = (self.CA*self.CF*np.pi**2)/3
-			res = np.exp(- fct*u**2*(1+ au2)/(1 + buc) )
-
-			out = np.append(out,res)
-			
-		return out 
-		
-	def sng_imp(self,qq,bt):
-
-		out = array([])	
-		if type(bt)==float or type(bt)== np.float64 :bt=array([bt])
-		for bb in bt: 
-
-			b_new = sqrt(bb**2 + self.bmin**2)
-			res = sng(qq,b_new)
-			out = np.append(out,res)
-		return out
-					
-
-############################################################
 #
 #	sSUDAKOV TERMS
-
-#########################
-## NUMERICAL INTEGRATION
-
-	def integrand(self,mu):   			## integrand sudakov ff, from Phys.Lett.B 818 (2021) 136371 eq. 13-14
-	
-		if self.order == 1:
-			integr = self.pdf.alphasQ(mu)/np.pi
-			integr = integr*self.CF*(2*np.log(self.scale/mu) - 3/2)
-
-		elif self.order == 2:
-			integr1 = self.pdf.alphasQ(mu)/np.pi
-			integr1 = integr1*self.CF*(2*np.log(self.scale/mu) - 3/2)
-
-			integr2 = (self.pdf.alphasQ(mu)/np.pi)**2
-			integr2 = integr2*self.CF*2*np.log(self.scale/mu)
-			integr2 = integr2*(self.CA*(67/18 - np.pi**2/6) -self.Tr*self.nf*10/9 )
-			
-			integr = integr1 + integr2
-		
-		return integr		
-		
-
-	def soft_pert(self,bt): 			 ## integration of  integrand with scipy for dihadron
-		
-			
-		
-		out = array([])	
-		if type(bt)==float or type(bt)== np.float64 :bt=array([bt])
-		for bb in bt: 
-
-			
-			test = lambda xx: self.integrand(xx)/xx
-			mub_str = self.mu_b(bb)
-			
-			#print(mub_str)
-			#print(self.scale)
-			
-			result = integrate.quad(test,mub_str,self.scale)
-			out = np.append(out,np.exp(-result[0]))
-		
-		return out
-##### NON GLOB LOGS
-
-	def soft_pert_1h(self,bt):  	# integration of  integrand with scipy times NON Glob. Logs.  for thrust
-		
-		test = lambda xx: self.integrand(xx)/xx	
-		
-		out = array([])	
-		if type(bt)==float or type(bt)== np.float64 :bt=array([bt])
-		for bb in bt: 
-
-			
-			
-			mub_str = self.mu_b(bb)
-			
-			#print(mub_str)
-			#print(self.scale)
-			
-			result = integrate.quad(test,mub_str,self.scale)
-			out = np.append(out,np.exp(-result[0])*sng(self.scale,bb))#	
-	#	out=out*sng(self.scale,bt)
-		
-		return out
-#####################
-# EVOLVE ROUTINE
-
-	def sudakov_integrated(self,bt):  	## integral sudakov ff, from Phys.Lett.B 818 (2021) 136371 eq. 13-14, for dihadron prod
-
-		out = array([])	
-		if type(bt)==float or type(bt)== np.float64 :bt=array([bt])
-		for bb in bt: 
-			
-			mubs = self.mu_b(bb)
-			res = evolve(1,bb,self.scale,mubs)#*sng(self.scale,bt)
-			out = np.append(out,res)	
-
-		return out
-
-	def sudakov_integrated_1h(self,bt):  ## integral sudakov ff, from Phys.Lett.B 818 (2021) 136371 eq. 13-14, with Non Glob. Logs.
-		out = array([])	
-		if type(bt)==float or type(bt)== np.float64 :bt=array([bt])
-		for bb in bt: 
-			
-			mubs = self.mu_b(bb)
-			res = evolve(1,bb,self.scale,mubs)*sng(self.scale,bb)
-			out = np.append(out,res)	
-		
-		return out
 
 
 ######################################
@@ -269,19 +138,25 @@ class Soft:
 
 	def analytic_sudakov(self,bt,x,y):
 
+		if self.nf==3:lbd_qcd = 0.2123 ## nf= 3
+		elif self.nf==4:lbd_qcd = 0.1737 ## nf=4
+
+		beta0 = (11*self.CA - 4*self.Tf*self.nf)/3  ## 4 pi beta0
+		gammad1 = 6*self.CF 
+		gammak1 = 8*self.CF
+		gammak2 = self.CA*self.CF*(536/9 - 8*np.pi**2/3) - 80*self.CF*self.nf/9
+
 		QQ = self.sep*x*y
+		mu_bstr = self.mu_b(bt,x,y)
 		#bmin = 2*e**(-euler_gamma)/QQ
 	
-		lbd_qcd = 0.2123 
+		#lbd_qcd = 0.2123 
 		#QQ = self.scale
-		AA = 12*np.pi/(33 - 2*self.nf)
-		
-		mu_bstr = self.mu_b(bt,x,y)
-		
 		LL1 = np.log(QQ/lbd_qcd)
 		LL2 = np.log(mu_bstr/lbd_qcd)
+		LL3 = np.log(QQ/mu_bstr)
 		
-		fact = 2*AA/np.pi*( np.log(LL1/LL2) -4/3*LL1*np.log(LL1/LL2) + 4/3*np.log(QQ/mu_bstr) )
+		fact = gammad1*np.log(LL1/LL2)/beta0 +	gammak1*(LL3 - LL1*np.log(LL1/LL2))/beta0 + gammak2*(-LL3/LL2 + np.log(LL1/LL2))/2/beta0**2		
 		
 		return np.exp(fact)	
 
@@ -487,7 +362,7 @@ class Soft:
 		#if had2 == 'pi+' or had2 == 'pi-' : ml2 = 0.13957  # pion mass
 		#elif had2 == 'k+' or had2 == 'k-' : ml2 = 0.4937  # kaon mass
 		 
-		eta_p= (1 - (ml1**2/z1**2/self.scale**2)*xb2/(1-xb2))
+		eta_p= (1 - (ml1**2/z1**2/QQ**2)*xb2/(1-xb2))
 		zp1 = z1*sqrt(eta_p)		# momentum fraction
 		
 		#eta_p= (1 - 4*ml1**2/z1**2/self.scale**2)
@@ -495,7 +370,7 @@ class Soft:
 
 		zlc1 = (z1 + zp1)/2	#light-cone momentum fraction
 
-		term = self.scale**2*zlc1#*xb2
+		term = QQ**2*zlc1#*xb2
 		term = term/ml1/ml2/xb2
 
 		logs = np.log(term)	

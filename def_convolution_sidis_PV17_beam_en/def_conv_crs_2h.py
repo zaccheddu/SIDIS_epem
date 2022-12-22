@@ -36,10 +36,12 @@ class polarization :
 		self.mdl_num = 'gauss'
 
 		self.sep=sep
+        	self.nf=3
+        	
         	
 	def denominator(self,had1,had2,z1,xb2,y):
 
-		fnt = cr_sec()
+		fnt = cr_sec(self.sep)
 		fnt.mass = self.mass        
 		#fnt.frag2 = self.frag2
 		fnt.qq=self.scale
@@ -47,10 +49,10 @@ class polarization :
 
 		mdl1 = model_bt(self.sep)
 		mdl1.mass = 1.115
-		mdl1.qq = self.scale
+		#mdl1.qq = self.scale
 		mdl2 = model_bt(self.sep)
 		mdl2.mass = 0.
-		mdl2.qq = self.scale
+		#mdl2.qq = self.scale
 		
 		
 		wdt1_unp = 0.2
@@ -58,7 +60,8 @@ class polarization :
 
 		scl = Soft(1,self.sep)
 		scl.bmax = self.bmax 
-		scl.scale = self.scale	
+		scl.nf=self.nf
+		#scl.scale = self.scale	
 
 		QQ = self.sep*xb2*y
 
@@ -66,7 +69,7 @@ class polarization :
 
 		def fnc(btt):
 
-			res = fnt.cross_sec2(had1,had2,z1,xb2,scl.mu_b(btt,xb2,y))
+			res = fnt.cross_sec2(had1,had2,z1,xb2,scl.mu_b(btt,xb2,y),y)
 			#print(scl.mu_b(btt))
 			if self.mdl_den == 'gauss' : res = res*mdl1.MD_gauss(btt,z1,xb2,y,wdt1_unp)
 			elif self.mdl_den == 'pwr_lw_star' : res = res*mdl1.MD_bstar(btt,2.,z1,xb2,y,1.)
@@ -104,7 +107,7 @@ class polarization :
 
 	def numerator(self,had1,had2,z1,xb2,y,param,wdt_pol,mss):
 
-		fnt = cr_sec()
+		fnt = cr_sec(self.sep)
 		fnt.mass = self.mass        
 		#fnt.frag2 = self.frag2
 		fnt.qq=self.scale
@@ -112,10 +115,10 @@ class polarization :
 
 		mdl1 = model_bt(self.sep)
 		mdl1.mass = 1.115
-		mdl1.qq = self.scale
+		#mdl1.qq = self.scale
 		mdl2 = model_bt(self.sep)
 		mdl2.mass = 0.
-		mdl2.qq = self.scale
+		#mdl2.qq = self.scale
 		
 		
 		wdt1_unp = 0.2
@@ -123,15 +126,15 @@ class polarization :
 
 		scl = Soft(1,self.sep)
 		scl.bmax = self.bmax 
-		scl.scale = self.scale	
-
+		#scl.scale = self.scale	
+		scl.nf=self.nf
 		QQ = self.sep*xb2*y
 
 		qT_max = QQ*self.coef
 
 		def fnc1(btt):
 
-			res = btt*fnt.cross_sec2_polda(had1,had2,z1,xb2,scl.mu_b(btt,xb2,y),param)
+			res = btt*fnt.cross_sec2_polda(had1,had2,z1,xb2,scl.mu_b(btt,xb2,y),param,y)
 			#print(res)
 			if self.mdl_num == 'gauss' :res = res*mdl1.MD_gauss(btt,z1,xb2,y,wdt_pol)# h1 model
 			elif self.mdl_num == 'pwr_lw_star' : res = res*mdl1.MD_bstar(btt,wdt_pol,z1,xb2,mss)
@@ -157,7 +160,7 @@ class polarization :
 
 		def fnc2(btt):
 
-			res = btt*fnt.cross_sec2_polda(had1,had2,z1,xb2,scl.mu_b(btt,xb2,y),param)
+			res = btt*fnt.cross_sec2_polda(had1,had2,z1,xb2,scl.mu_b(btt,xb2,y),param,y)
 
 			if self.mdl_num == 'gauss' :res = res*mdl1.MD_gauss(btt,z1,xb2,y,wdt_pol)# h1 model
 			elif self.mdl_num == 'pwr_lw_star' : res = res*mdl1.MD_bstar(btt,wdt_pol,z1,xb2,mss)
@@ -300,7 +303,7 @@ class polarization :
 
 	def denominator_pt(self,had1,had2,z1,xb2,y,pt):
 
-		fnt = cr_sec()
+		fnt = cr_sec(self.sep)
 		fnt.mass = self.mass        
 		#fnt.frag2 = self.frag2
 		fnt.qq=self.scale
@@ -308,10 +311,10 @@ class polarization :
 
 		mdl1 = model_bt(self.sep)
 		mdl1.mass = 1.115
-		mdl1.qq = self.scale
+		#mdl1.qq = self.scale
 		mdl2 = model_bt(self.sep)
 		mdl2.mass = 0.
-		mdl2.qq = self.scale
+		#mdl2.qq = self.scale
 		
 		
 		wdt1_unp = 0.2
@@ -319,14 +322,14 @@ class polarization :
 
 		scl = Soft(1,self.sep)
 		scl.bmax = self.bmax 
-		scl.scale = self.scale	
-
+		#scl.scale = self.scale	
+		scl.nf=self.nf
 		qT = pt/z1
 
 
 		def fnc(btt):
 
-			res = fnt.cross_sec2(had1,had2,z1,xb2,scl.mu_b(btt,xb2,y))
+			res = fnt.cross_sec2(had1,had2,z1,xb2,scl.mu_b(btt,xb2,y),y)
 			#print(scl.mu_b(btt))
 			if self.mdl_den == 'gauss' : res = res*mdl1.MD_gauss(btt,z1,xb2,y,wdt1_unp)
 			elif self.mdl_den == 'pwr_lw_star' : res = res*mdl1.MD_bstar(btt,2.,z1,xb2,y,1.)
@@ -366,7 +369,7 @@ class polarization :
 
 	def numerator_pt(self,had1,had2,z1,xb2,y,pt,param,wdt_pol,mss):
 
-		fnt = cr_sec()
+		fnt = cr_sec(self.sep)
 		fnt.mass = self.mass        
 		#fnt.frag2 = self.frag2
 		fnt.qq=self.scale
@@ -374,10 +377,10 @@ class polarization :
 
 		mdl1 = model_bt(self.sep)
 		mdl1.mass = 1.115
-		mdl1.qq = self.scale
+		#mdl1.qq = self.scale
 		mdl2 = model_bt(self.sep)
 		mdl2.mass = 0.
-		mdl2.qq = self.scale
+		#mdl2.qq = self.scale
 		
 		
 		wdt1_unp = 0.2
@@ -385,13 +388,13 @@ class polarization :
 
 		scl = Soft(1,self.sep)
 		scl.bmax = self.bmax 
-		scl.scale = self.scale	
-
+		#scl.scale = self.scale	
+		scl.nf=self.nf
 		qT =  pt/z1
 
 		def fnc1(btt):
 
-			res = btt**2*fnt.cross_sec2_polda(had1,had2,z1,xb2,scl.mu_b(btt,xb2,y),param)
+			res = btt**2*fnt.cross_sec2_polda(had1,had2,z1,xb2,scl.mu_b(btt,xb2,y),param,y)
 			#print(res)
 			if self.mdl_num == 'gauss' :res = res*mdl1.MD_gauss(btt,z1,xb2,y,wdt_pol)# h1 model
 			elif self.mdl_num == 'pwr_lw_star' : res = res*mdl1.MD_bstar(btt,wdt_pol,z1,xb2,mss)

@@ -24,21 +24,23 @@ class cr_sec:
 
 
 
-	def __init__(self):
+	def __init__(self,sep):
 
 		self.mass = 0.
 
 		#self.frag2= 'dss'	
 	
-		self.qq = 10.58
+		#self.qq = 10.58
 
+		self.sep=sep
 		self.charm = 'yes'
 
-	def cross_sec2(self,had1,had2,z1,xb2,q):	#lambda-had non pol
+	def cross_sec2(self,had1,had2,z1,xb2,q,y):	#lambda-had non pol
 
 		ml= self.mass
 		
-		eta_p= (1 - (ml**2/z1**2/self.qq**2)*xb2/(1-xb2))
+		QQ = self.sep*xb2*y
+		eta_p= (1 - (ml**2/z1**2/QQ**2)*xb2/(1-xb2))
 		zp1 = z1*sqrt(eta_p)		# momentum fraction
 
 		zlc1 = (z1 + zp1)/2	#light-cone momentum fraction
@@ -170,11 +172,13 @@ class cr_sec:
 		return cs2
 
 
-	def cross_sec2_polda(self,had1,had2,z1,xb2,q,param): # lambda-had polarizzata   ,z1 z2 energy fractions
+	def cross_sec2_polda(self,had1,had2,z1,xb2,q,param,y): # lambda-had polarizzata   ,z1 z2 energy fractions
 
 		ml= self.mass
 
-		eta_p= (1 - (ml**2/z1**2/self.qq**2)*xb2/(1-xb2))
+		QQ = self.sep*xb2*y
+		eta_p= (1 - (ml**2/z1**2/QQ**2)*xb2/(1-xb2))
+
 		zp1 = z1*sqrt(eta_p)		# momentum fraction
 
 		#zlc1 =  (z1 + zp1)/2	#light-cone momentum fraction

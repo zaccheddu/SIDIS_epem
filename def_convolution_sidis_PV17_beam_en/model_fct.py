@@ -19,7 +19,7 @@ class model_bt():
 
 		self.frag2= 'dss'	
 	
-		self.qq = 10.58
+		#self.qq = 10.58
 
 		#self.bmin = 2*e**(-euler_gamma)/self.qq 	### for mu_b_star
 		self.bmax = 0.6
