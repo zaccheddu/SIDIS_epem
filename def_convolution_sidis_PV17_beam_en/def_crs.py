@@ -16,18 +16,19 @@ import lhapdf
 
 
 #pdf=lhapdf.mkPDF("cteq6l1")
-pdf=lhapdf.mkPDF("CT10nlo")
-
+#pdf=lhapdf.mkPDF("CT10nlo")
+#pdf=lhapdf.mkPDF("CT14nnloIC",0)
+#pdf1=lhapdf.mkPDF("CT14nnloIC",1)
+pdf_set=lhapdf.getPDFSet("CT14nnloIC")
 
 
 class cr_sec:
 
+	
 
+	def __init__(self,sep,IC):
 
-	def __init__(self,sep):
-
-		self.mass = 0.
-
+		self.mass = 1.115
 		#self.frag2= 'dss'	
 	
 		#self.qq = 10.58
@@ -35,10 +36,15 @@ class cr_sec:
 		self.sep=sep
 		self.charm = 'yes'
 
-	def cross_sec2(self,had1,had2,z1,xb2,q,y):	#lambda-had non pol
+		self.set=pdf_set.mkPDF(IC)
 
+
+	def cross_sec2(self,had1,had2,z1,xb2,q,y):	#lambda-had non pol
 		ml= self.mass
-		
+	
+		pdf=self.set
+
+		#print(q)
 		QQ = self.sep*xb2*y
 		eta_p= (1 - (ml**2/z1**2/QQ**2)*xb2/(1-xb2))
 		zp1 = z1*sqrt(eta_p)		# momentum fraction
@@ -129,6 +135,7 @@ class cr_sec:
 #		print(type(q))
 		#q=np.array([q])
 		if type(q)!=ndarray:
+			#print(q)
 			dup2=pdf.xfxQ(2,xb2,q)/xb2
 			dupb2=pdf.xfxQ(-2,xb2,q)/xb2
 			ddo2=pdf.xfxQ(1,xb2,q)/xb2
@@ -153,6 +160,7 @@ class cr_sec:
 			dchb2= np.array([])	
 			
 			for qq in q:#
+				#print(qq)
 				dup2= np.append(dup2,pdf.xfxQ(2,xb2,qq)/xb2)
 				dupb2=np.append(dupb2,pdf.xfxQ(-2,xb2,qq)/xb2)
 				ddo2=np.append(ddo2,pdf.xfxQ(1,xb2,qq)/xb2)
@@ -174,6 +182,7 @@ class cr_sec:
 
 	def cross_sec2_polda(self,had1,had2,z1,xb2,q,param,y): # lambda-had polarizzata   ,z1 z2 energy fractions
 
+		pdf=self.set
 		ml= self.mass
 
 		QQ = self.sep*xb2*y

@@ -79,7 +79,7 @@ class model_bt():
 		ml= 1.115
 
 
-		eta_p= (1 - (ml**2/zz**2/self.qq**2)*xb2/(1-xb2))
+		eta_p= (1 - (ml**2/zz**2/QQ**2)*xb2/(1-xb2))
 		zp1 = zz*sqrt(eta_p)		# momentum fraction
 
 
@@ -119,7 +119,7 @@ class model_bt():
 		ml= self.mass
 
 
-		eta_p= (1 - (ml**2/zz**2/self.qq**2)*xb2/(1-xb2))
+		eta_p= (1 - (ml**2/zz**2/QQ**2)*xb2/(1-xb2))
 		zp1 = zz*sqrt(eta_p)		# momentum fraction
 
 

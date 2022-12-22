@@ -17,8 +17,8 @@ class Soft:
 	
 
 #	pdf=lhapdf.mkAlphaS("NNFF10_PIp_nlo")
-	pdf=lhapdf.mkAlphaS("CT10")
-	
+	#pdf=lhapdf.mkPDF("CT10nlo")
+	#pdf=lhapdf.mkPDF("CT14nnloIC")	
 
 	def __init__(self,order,sep):
 

@@ -36,15 +36,16 @@ class polarization :
 		self.mdl_num = 'gauss'
 
 		self.sep=sep
-        	self.nf=3
-        	
+		self.nf=3
+
+		self.IC_num=0        	
         	
 	def denominator(self,had1,had2,z1,xb2,y):
 
-		fnt = cr_sec(self.sep)
+		fnt = cr_sec(self.sep,self.IC_num)
 		fnt.mass = self.mass        
 		#fnt.frag2 = self.frag2
-		fnt.qq=self.scale
+		#fnt.qq=self.scale
 		fnt.charm = self.charm
 
 		mdl1 = model_bt(self.sep)
@@ -97,7 +98,7 @@ class polarization :
 
 		
 
-		N=10
+		N=20
 		fbt = FBT(1)
 		wfbt_unp = fbt.fbt(test,qT_max,N)
 		wfbt_unp = wfbt_unp*2*pi*qT_max	
@@ -107,10 +108,10 @@ class polarization :
 
 	def numerator(self,had1,had2,z1,xb2,y,param,wdt_pol,mss):
 
-		fnt = cr_sec(self.sep)
+		fnt = cr_sec(self.sep,self.IC_num)
 		fnt.mass = self.mass        
 		#fnt.frag2 = self.frag2
-		fnt.qq=self.scale
+		#fnt.qq=self.scale
 		fnt.charm = self.charm
 
 		mdl1 = model_bt(self.sep)
@@ -189,7 +190,7 @@ class polarization :
 		test1 = lambda bt : fnc1(bt)			
 		test2 = lambda bt : fnc2(bt)
 		
-		N=10
+		N=20
 		
 		fbt2 = FBT(0)
 		wfbt2 = fbt2.fbt(test2,qT_max,N)
@@ -282,7 +283,7 @@ class polarization :
 
 
 	def ratio_y(self,had1,had2,z1,xb,yy,param,wdt_pol,mss):
-	
+		#print(xb)
 		mass = 1.115	
 		num =  self.numerator(had1,had2,z1,xb,yy,param,wdt_pol,mss)
 		den = self.denominator(had1,had2,z1,xb,yy)
@@ -303,10 +304,10 @@ class polarization :
 
 	def denominator_pt(self,had1,had2,z1,xb2,y,pt):
 
-		fnt = cr_sec(self.sep)
+		fnt = cr_sec(self.sep,self.IC_num)
 		fnt.mass = self.mass        
 		#fnt.frag2 = self.frag2
-		fnt.qq=self.scale
+		#fnt.qq=self.scale
 		fnt.charm = self.charm
 
 		mdl1 = model_bt(self.sep)
@@ -369,10 +370,10 @@ class polarization :
 
 	def numerator_pt(self,had1,had2,z1,xb2,y,pt,param,wdt_pol,mss):
 
-		fnt = cr_sec(self.sep)
+		fnt = cr_sec(self.sep,self.IC_num)
 		fnt.mass = self.mass        
 		#fnt.frag2 = self.frag2
-		fnt.qq=self.scale
+		#fnt.qq=self.scale
 		fnt.charm = self.charm
 
 		mdl1 = model_bt(self.sep)
