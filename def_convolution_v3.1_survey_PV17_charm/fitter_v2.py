@@ -623,7 +623,7 @@ ft.pp_down_lm = 0.
 ft.pp_up_lm  = 0.2
 ft.mss=0.
 ft.mss_fix = True
-ft.correct = 'yes'
+ft.correct = 'no'
 ft.coef=0.27
 
 ft.su2='no'
@@ -652,7 +652,7 @@ ft2.cut_h2= 5
 ft2.coef = 0.27
 ft2.ado=1.2
 ft2.ado_fix = False
-ft2.correct = 'yes'
+ft2.correct = 'no'
 #ft2.bsea = 0.
 #ft2.bsea_fix = True
 
@@ -671,13 +671,13 @@ ht.charm= 'yes'
 ht.nf=4
 ht.scale = 10.58
 ht.cut_h2= 5
-ht.correct = 'yes'
+ht.correct = 'no'
 
 ht.aup=0.
 ht.ado=0.
 
 ht.bup = 1.2
-ht.bdo = 0.
+ht.bdo = 1.
 ht.bst = 0.
 ht.bsea = 0.
 
@@ -685,7 +685,7 @@ ht.aup_fix = True
 ht.ado_fix = True
 
 ht.bup_fix = False
-ht.bdo_fix = True
+ht.bdo_fix = False
 ht.bst_fix = True
 ht.bsea_fix = True
 ht.coef=0.27
@@ -699,20 +699,20 @@ p5 = multiprocessing.Process(target=ht.fit)
 p6 = multiprocessing.Process(target=ht2.fit)
 
 
-p1.start()
+#p1.start()
 p2.start()
 #p3.start()
 #p4.start()
-p5.start()
+#p5.start()
 #p6.start()
 
 
 
-p1.join()
+#p1.join()
 p2.join()
 #p3.join()
 #p4.join()
-p5.join()
+#p5.join()
 #p6.join()
 
 
