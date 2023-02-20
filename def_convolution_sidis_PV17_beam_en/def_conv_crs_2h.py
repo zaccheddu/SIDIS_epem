@@ -38,11 +38,12 @@ class polarization :
 		self.sep=sep
 		self.nf=3
 
+		self.pdf_name='CT14IC'
 		self.IC_num=0        	
         	
 	def denominator(self,had1,had2,z1,xb2,y):
 
-		fnt = cr_sec(self.sep,self.IC_num)
+		fnt = cr_sec(self.sep,self.IC_num,self.pdf_name)
 		fnt.mass = self.mass        
 		#fnt.frag2 = self.frag2
 		#fnt.qq=self.scale
@@ -108,7 +109,7 @@ class polarization :
 
 	def numerator(self,had1,had2,z1,xb2,y,param,wdt_pol,mss):
 
-		fnt = cr_sec(self.sep,self.IC_num)
+		fnt = cr_sec(self.sep,self.IC_num,self.pdf_name)
 		fnt.mass = self.mass        
 		#fnt.frag2 = self.frag2
 		#fnt.qq=self.scale

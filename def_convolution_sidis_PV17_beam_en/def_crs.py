@@ -19,14 +19,15 @@ import lhapdf
 #pdf=lhapdf.mkPDF("CT10nlo")
 #pdf=lhapdf.mkPDF("CT14nnloIC",0)
 #pdf1=lhapdf.mkPDF("CT14nnloIC",1)
-pdf_set=lhapdf.getPDFSet("CT14nnloIC")
+pdf_set1=lhapdf.getPDFSet("CT14nnloIC")
+pdf_set2=lhapdf.getPDFSet("NNPDF40_nnlo_as_01180_1000")
 
 
 class cr_sec:
 
 	
 
-	def __init__(self,sep,IC):
+	def __init__(self,sep,IC,pdf_name):
 
 		self.mass = 1.115
 		#self.frag2= 'dss'	
@@ -35,9 +36,8 @@ class cr_sec:
 
 		self.sep=sep
 		self.charm = 'yes'
-
-		self.set=pdf_set.mkPDF(IC)
-
+		if pdf_name=='CT14IC': self.set=pdf_set1.mkPDF(IC)
+		elif pdf_name=='NNPDF40': self.set=pdf_set2.mkPDF(0)
 
 	def cross_sec2(self,had1,had2,z1,xb2,q,y):	#lambda-had non pol
 		ml= self.mass
