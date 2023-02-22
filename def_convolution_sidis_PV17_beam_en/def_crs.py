@@ -21,6 +21,7 @@ import lhapdf
 #pdf1=lhapdf.mkPDF("CT14nnloIC",1)
 pdf_set1=lhapdf.getPDFSet("CT14nnloIC")
 pdf_set2=lhapdf.getPDFSet("NNPDF40_nnlo_as_01180_1000")
+pdf_set3=lhapdf.getPDFSet("CT10nlo")
 
 
 class cr_sec:
@@ -38,6 +39,11 @@ class cr_sec:
 		self.charm = 'yes'
 		if pdf_name=='CT14IC': self.set=pdf_set1.mkPDF(IC)
 		elif pdf_name=='NNPDF40': self.set=pdf_set2.mkPDF(0)
+		elif pdf_name=='CT10': self.set=pdf_set3.mkPDF(0)
+
+		self.nucleon='proton'# 'neutron', 'lead'
+		
+
 
 	def cross_sec2(self,had1,had2,z1,xb2,q,y):	#lambda-had non pol
 		ml= self.mass
@@ -172,11 +178,66 @@ class cr_sec:
 				dchb2=np.append(dchb2,pdf.xfxQ(-4,xb2,qq)/xb2)	
 				#print(type(dup2))
 
-
+		if self.nucleon=='neutron':
+		
+			tmp=dup2
+			dup2=ddo2
+			ddo2=tmp
+			
 
 		cs2= 4/9*(dup1*dup2 + dupb1*dupb2) + 1/9*(ddo1*ddo2 + ddob1*ddob2) + 1/9*(dst1*dst2 + dstb1*dstb2) 
 		if self.charm == 'yes': cs2= cs2 + 4/9*(dch1*dch2 + dchb1*dchb2)
 	#
+	
+		if self.nucleon=='helium':
+			Z=2
+			A=4
+
+			cs2_Z=Z*cs2  ## protoni			
+			
+			tmp=dup2
+			dup2=ddo2
+			ddo2=tmp
+
+			cs2_A= 4/9*(dup1*dup2 + dupb1*dupb2) + 1/9*(ddo1*ddo2 + ddob1*ddob2) + 1/9*(dst1*dst2 + dstb1*dstb2) 
+			if self.charm == 'yes': cs2_A= cs2_A + 4/9*(dch1*dch2 + dchb1*dchb2)
+			cs2_A=(A-Z)*cs2_A  ## nucleoni
+			
+			cs2=cs2_A+cs2_Z
+			
+		if self.nucleon=='deuterium':
+			Z=1
+			A=2
+
+			cs2_Z=Z*cs2  ## protoni			
+			
+			tmp=dup2
+			dup2=ddo2
+			ddo2=tmp
+
+			cs2_A= 4/9*(dup1*dup2 + dupb1*dupb2) + 1/9*(ddo1*ddo2 + ddob1*ddob2) + 1/9*(dst1*dst2 + dstb1*dstb2) 
+			if self.charm == 'yes': cs2_A= cs2_A + 4/9*(dch1*dch2 + dchb1*dchb2)
+			cs2_A=(A-Z)*cs2_A  ## nucleoni
+			
+			cs2=cs2_A+cs2_Z
+
+		if self.nucleon=='lead':
+			Z=82
+			A=207
+
+			cs2_Z=Z*cs2  ## protoni			
+			
+			tmp=dup2
+			dup2=ddo2
+			ddo2=tmp
+
+			cs2_A= 4/9*(dup1*dup2 + dupb1*dupb2) + 1/9*(ddo1*ddo2 + ddob1*ddob2) + 1/9*(dst1*dst2 + dstb1*dstb2) 
+			if self.charm == 'yes': cs2_A= cs2_A + 4/9*(dch1*dch2 + dchb1*dchb2)
+			cs2_A=(A-Z)*cs2_A  ## nucleoni
+			
+			cs2=cs2_A+cs2_Z
+
+				
 		return cs2
 
 
@@ -298,9 +359,63 @@ class cr_sec:
 				dchb2=np.append(dchb2,pdf.xfxQ(-4,xb2,qq)/xb2)	
 				#print(type(dup2))
 	
+		if self.nucleon=='neutron':
+		
+			tmp=dup2
+			dup2=ddo2
+			ddo2=tmp
+			
 
 		cs2= 4/9*(dup1*dup2 + dupb1*dupb2) + 1/9*(ddo1*ddo2 + ddob1*ddob2) + 1/9*(dst1*dst2 + dstb1*dstb2) 
 	#
+	
+		if self.nucleon=='helium':
+			Z=2
+			A=4
+
+			cs2_Z=Z*cs2  ## protoni			
+			
+			tmp=dup2
+			dup2=ddo2
+			ddo2=tmp
+
+			cs2_A= 4/9*(dup1*dup2 + dupb1*dupb2) + 1/9*(ddo1*ddo2 + ddob1*ddob2) + 1/9*(dst1*dst2 + dstb1*dstb2) 
+			cs2_A=(A-Z)*cs2_A  ## nucleoni
+			
+			cs2=cs2_A+cs2_Z
+
+		if self.nucleon=='deuterium':
+			Z=1
+			A=2
+
+			cs2_Z=Z*cs2  ## protoni			
+			
+			tmp=dup2
+			dup2=ddo2
+			ddo2=tmp
+
+			cs2_A= 4/9*(dup1*dup2 + dupb1*dupb2) + 1/9*(ddo1*ddo2 + ddob1*ddob2) + 1/9*(dst1*dst2 + dstb1*dstb2) 
+			cs2_A=(A-Z)*cs2_A  ## nucleoni
+			
+			cs2=cs2_A+cs2_Z
+
+		if self.nucleon=='lead':
+			Z=82
+			A=207
+
+			cs2_Z=Z*cs2  ## protoni			
+			
+			tmp=dup2
+			dup2=ddo2
+			ddo2=tmp
+
+			cs2_A= 4/9*(dup1*dup2 + dupb1*dupb2) + 1/9*(ddo1*ddo2 + ddob1*ddob2) + 1/9*(dst1*dst2 + dstb1*dstb2) 
+			cs2_A=(A-Z)*cs2_A  ## nucleoni
+			
+			cs2=cs2_A+cs2_Z
+
+
+	
 		return cs2
 
 

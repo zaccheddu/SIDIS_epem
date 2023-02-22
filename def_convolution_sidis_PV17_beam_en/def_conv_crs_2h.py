@@ -40,6 +40,9 @@ class polarization :
 
 		self.pdf_name='CT14IC'
 		self.IC_num=0        	
+
+		self.nucleon='proton'# 'neutron', 'lead'
+
         	
 	def denominator(self,had1,had2,z1,xb2,y):
 
@@ -48,6 +51,8 @@ class polarization :
 		#fnt.frag2 = self.frag2
 		#fnt.qq=self.scale
 		fnt.charm = self.charm
+		fnt.nucleon=self.nucleon
+
 
 		mdl1 = model_bt(self.sep)
 		mdl1.mass = 1.115
@@ -114,6 +119,7 @@ class polarization :
 		#fnt.frag2 = self.frag2
 		#fnt.qq=self.scale
 		fnt.charm = self.charm
+		fnt.nucleon=self.nucleon
 
 		mdl1 = model_bt(self.sep)
 		mdl1.mass = 1.115
@@ -310,6 +316,7 @@ class polarization :
 		#fnt.frag2 = self.frag2
 		#fnt.qq=self.scale
 		fnt.charm = self.charm
+		fnt.nucleon=self.nucleon
 
 		mdl1 = model_bt(self.sep)
 		mdl1.mass = 1.115
@@ -376,6 +383,7 @@ class polarization :
 		#fnt.frag2 = self.frag2
 		#fnt.qq=self.scale
 		fnt.charm = self.charm
+		fnt.nucleon=self.nucleon
 
 		mdl1 = model_bt(self.sep)
 		mdl1.mass = 1.115
