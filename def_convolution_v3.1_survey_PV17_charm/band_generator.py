@@ -136,7 +136,7 @@ def grids_lp(df,su2,charm,scale,coef,nf):
 
         if hads2 == 100 : had2='pi+'
         elif hads2 == 105 : had2='pi-'
-        elif hads2 == 200 : had2='k-'
+        elif hads2 == 200 : had2='k+'
         elif hads2 == 205 : had2='k-'
 
         num[i]= fnc.ratio(had1,had2,zs1,zs2,f_prm,pt_pp,0)
@@ -253,7 +253,8 @@ def grids_lk(df,su2,charm,scale,coef,nf):
 # In[6]:
 
 
-scale = 10.58
+scale = 12.58
+print(scale)
 su2_1= 'no'
 charm1='no'
 su2_2= 'no'
@@ -261,6 +262,7 @@ charm2='yes'
 su2_3= 'yes'
 charm3='yes'
 
+cut_dfs=800
 
 dati_lp1=grids_lp(df1,su2_1,charm1,scale,0.27,3)
 dati_lk1=grids_lk(df1,su2_1,charm1,scale,0.27,3)
@@ -276,7 +278,7 @@ dati_lk3=grids_lk(df3,su2_3,charm3,scale,0.27,4)
 
 def grids_lp_bands(dati_lp,df_prm,su2,charm,scale,coef,nf):
 	
-    df_prm=df_prm.loc[(df_prm.index<500)]
+    df_prm=df_prm.loc[(df_prm.index<cut_dfs)]
     mdl_den = 'pwr_lw_star'
     mdl_num = 'gauss'
     g_k_2h = 'PV17'
@@ -305,7 +307,7 @@ def grids_lp_bands(dati_lp,df_prm,su2,charm,scale,coef,nf):
 
         if hads2 == 100 : had2='pi+'
         elif hads2 == 105 : had2='pi-'
-        elif hads2 == 200 : had2='k-'
+        elif hads2 == 200 : had2='k+'
         elif hads2 == 205 : had2='k-'
 
     
@@ -429,7 +431,7 @@ def grids_lp_bands(dati_lp,df_prm,su2,charm,scale,coef,nf):
 
 def grids_lk_bands(dati_lk,df_prm,su2,charm,scale,coef,nf):
 
-    df_prm=df_prm.loc[(df_prm.index<500)]
+    df_prm=df_prm.loc[(df_prm.index<cut_dfs)]
     mdl_den = 'pwr_lw_star'
     mdl_num = 'gauss'
     g_k_2h = 'PV17'
@@ -458,7 +460,7 @@ def grids_lk_bands(dati_lk,df_prm,su2,charm,scale,coef,nf):
 
         if hads2 == 100 : had2='pi+'
         elif hads2 == 105 : had2='pi-'
-        elif hads2 == 200 : had2='k-'
+        elif hads2 == 200 : had2='k+'
         elif hads2 == 205 : had2='k-'
 
     
@@ -581,9 +583,9 @@ def grids_lk_bands(dati_lk,df_prm,su2,charm,scale,coef,nf):
 #dfs_lp2=grids_lp_bands(dati_lp2,dfs2,su2_2,charm2,scale,0.27,4)
 #dfs_lp3=grids_lp_bands(dati_lp3,dfs3,su2_3,charm3,scale,0.27,4)
 
-p1 = multiprocessing.Process(target=grids_lp_bands,args=(dati_lp1,dfs1,su2_1,charm1,scale,0.27,3))
-p2 = multiprocessing.Process(target=grids_lp_bands,args=(dati_lp2,dfs2,su2_2,charm2,scale,0.27,4))
-p3 = multiprocessing.Process(target=grids_lp_bands,args=(dati_lp3,dfs3,su2_3,charm3,scale,0.27,4))
+#p1 = multiprocessing.Process(target=grids_lp_bands,args=(dati_lp1,dfs1,su2_1,charm1,scale,0.27,3))
+#p2 = multiprocessing.Process(target=grids_lp_bands,args=(dati_lp2,dfs2,su2_2,charm2,scale,0.27,4))
+#p3 = multiprocessing.Process(target=grids_lp_bands,args=(dati_lp3,dfs3,su2_3,charm3,scale,0.27,4))
 
 
 p4 = multiprocessing.Process(target=grids_lk_bands,args=(dati_lk1,dfs1,su2_1,charm1,scale,0.27,3))
@@ -602,17 +604,17 @@ p6 = multiprocessing.Process(target=grids_lk_bands,args=(dati_lk3,dfs3,su2_3,cha
 # In[ ]:
 
 
-p1.start()
-p2.start()
-p3.start()
+#p1.start()
+#p2.start()
+#p3.start()
 p4.start()
 p5.start()
 p6.start()
 
 
-p1.join()
-p2.join()
-p3.join()
+#p1.join()
+#p2.join()
+#p3.join()
 p4.join()
 p5.join()
 p6.join()
