@@ -41,7 +41,7 @@ class cr_sec:
 		elif pdf_name=='NNPDF40': self.set=pdf_set2.mkPDF(0)
 		elif pdf_name=='CT10': self.set=pdf_set3.mkPDF(0)
 
-		self.nucleon='proton'# 'neutron', 'lead'
+		#self.nucleon='proton'# 'neutron', 'lead'
 		
 
 
@@ -178,18 +178,21 @@ class cr_sec:
 				dchb2=np.append(dchb2,pdf.xfxQ(-4,xb2,qq)/xb2)	
 				#print(type(dup2))
 
-		if self.nucleon=='neutron':
+		if had2=='neutron':
 		
 			tmp=dup2
 			dup2=ddo2
 			ddo2=tmp
 			
+			#tmp=dupb2
+			#dupb2=ddob2
+			#ddob2=tmp
 
 		cs2= 4/9*(dup1*dup2 + dupb1*dupb2) + 1/9*(ddo1*ddo2 + ddob1*ddob2) + 1/9*(dst1*dst2 + dstb1*dstb2) 
 		if self.charm == 'yes': cs2= cs2 + 4/9*(dch1*dch2 + dchb1*dchb2)
 	#
 	
-		if self.nucleon=='helium':
+		if had2=='helium':
 			Z=2
 			A=4
 
@@ -205,7 +208,7 @@ class cr_sec:
 			
 			cs2=cs2_A+cs2_Z
 			
-		if self.nucleon=='deuterium':
+		if had2=='deuterium':
 			Z=1
 			A=2
 
@@ -221,7 +224,7 @@ class cr_sec:
 			
 			cs2=cs2_A+cs2_Z
 
-		if self.nucleon=='lead':
+		if had2=='lead':
 			Z=82
 			A=207
 
@@ -359,17 +362,22 @@ class cr_sec:
 				dchb2=np.append(dchb2,pdf.xfxQ(-4,xb2,qq)/xb2)	
 				#print(type(dup2))
 	
-		if self.nucleon=='neutron':
+		if had2=='neutron':
 		
 			tmp=dup2
 			dup2=ddo2
 			ddo2=tmp
+
+			#tmp=dupb2
+			#dupb2=ddob2
+			#ddob2=tmp
+
 			
 
 		cs2= 4/9*(dup1*dup2 + dupb1*dupb2) + 1/9*(ddo1*ddo2 + ddob1*ddob2) + 1/9*(dst1*dst2 + dstb1*dstb2) 
 	#
 	
-		if self.nucleon=='helium':
+		if had2=='helium':
 			Z=2
 			A=4
 
@@ -384,7 +392,7 @@ class cr_sec:
 			
 			cs2=cs2_A+cs2_Z
 
-		if self.nucleon=='deuterium':
+		if had2=='deuterium':
 			Z=1
 			A=2
 
@@ -399,7 +407,7 @@ class cr_sec:
 			
 			cs2=cs2_A+cs2_Z
 
-		if self.nucleon=='lead':
+		if had2=='lead':
 			Z=82
 			A=207
 
