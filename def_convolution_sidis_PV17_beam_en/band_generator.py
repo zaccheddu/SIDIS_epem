@@ -601,8 +601,9 @@ def grids_ln_bands(df_prm,df,su2,charm,sep,IC,pdf_name):
 
 # In[19]:
 
+sep = 44.7 # 28.6, 44.7, 63.2, 104.9, 140.7
 
-sep = 28.6 # 28.6, 44.7, 63.2, 104.9, 140.7
+sep2 = 28.6 # 28.6, 44.7, 63.2, 104.9, 140.7
 pdf_name1='CT14IC'# 'NNPDF40'#, 'CT14IC', 'CT10'
 pdf_name2='NNPDF40'# 'NNPDF40'#, 'CT14IC', 'CT10'
 
@@ -618,41 +619,41 @@ charm3='yes'
 #grids_lp_bands(dfs1,df1,su2_1,charm1,sep,IC,pdf_name)
 
 
-p1 = multiprocessing.Process(target=grids_lp_bands,args=(dfs3,df3,su2_3,charm3,sep,0,pdf_name1))
-p2 = multiprocessing.Process(target=grids_lp_bands,args=(dfs3,df3,su2_3,charm3,sep,2,pdf_name1))
-p3 = multiprocessing.Process(target=grids_lp_bands,args=(dfs3,df3,su2_3,charm3,sep,1,pdf_name2))
+#p1 = multiprocessing.Process(target=grids_lp_bands,args=(dfs2,df2,su2_2,charm2,sep,0,pdf_name1))
+p2 = multiprocessing.Process(target=grids_lp_bands,args=(dfs2,df2,su2_2,charm2,sep,2,pdf_name1))
+p3 = multiprocessing.Process(target=grids_lp_bands,args=(dfs2,df2,su2_2,charm2,sep,1,pdf_name2))
 
 
-p4 = multiprocessing.Process(target=grids_ln_bands,args=(dfs2,df2,su2_2,charm2,sep,0,pdf_name1))
-p5 = multiprocessing.Process(target=grids_ln_bands,args=(dfs2,df2,su2_2,charm2,sep,2,pdf_name1))
-p6 = multiprocessing.Process(target=grids_ln_bands,args=(dfs2,df2,su2_2,charm2,sep,1,pdf_name2))
+p4 = multiprocessing.Process(target=grids_lp_bands,args=(dfs2,df2,su2_2,charm2,sep2,0,pdf_name1))
+p5 = multiprocessing.Process(target=grids_lp_bands,args=(dfs2,df2,su2_2,charm2,sep2,2,pdf_name1))
+p6 = multiprocessing.Process(target=grids_lp_bands,args=(dfs2,df2,su2_2,charm2,sep2,1,pdf_name2))
 
-p7 = multiprocessing.Process(target=grids_ln_bands,args=(dfs3,df3,su2_3,charm3,sep,0,pdf_name1))
-p8 = multiprocessing.Process(target=grids_ln_bands,args=(dfs3,df3,su2_3,charm3,sep,2,pdf_name1))
-p9 = multiprocessing.Process(target=grids_ln_bands,args=(dfs3,df3,su2_3,charm3,sep,1,pdf_name2))
+#p7 = multiprocessing.Process(target=grids_ln_bands,args=(dfs3,df3,su2_3,charm3,sep,0,pdf_name1))
+#p8 = multiprocessing.Process(target=grids_ln_bands,args=(dfs3,df3,su2_3,charm3,sep,2,pdf_name1))
+#p9 = multiprocessing.Process(target=grids_ln_bands,args=(dfs3,df3,su2_3,charm3,sep,1,pdf_name2))
 
 
 
-p1.start()
+#p1.start()
 p2.start()
 p3.start()
 p4.start()
 p5.start()
 p6.start()
-p7.start()
-p8.start()
-p9.start()
+#p7.start()
+#p8.start()
+#p9.start()
 
 
-p1.join()
+#p1.join()
 p2.join()
 p3.join()
 p4.join()
 p5.join()
 p6.join()
-p7.join()
-p8.join()
-p9.join()
+#p7.join()
+#p8.join()
+#p9.join()
 
 
 
