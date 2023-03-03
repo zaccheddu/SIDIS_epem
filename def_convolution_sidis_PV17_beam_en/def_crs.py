@@ -22,6 +22,8 @@ import lhapdf
 pdf_set1=lhapdf.getPDFSet("CT14nnloIC")
 pdf_set2=lhapdf.getPDFSet("NNPDF40_nnlo_as_01180_1000")
 pdf_set3=lhapdf.getPDFSet("CT10nlo")
+pdf_set4=lhapdf.getPDFSet("CT14nlo")
+pdf_set5=lhapdf.getPDFSet("CT14lo")
 
 
 class cr_sec:
@@ -40,6 +42,8 @@ class cr_sec:
 		if pdf_name=='CT14IC': self.set=pdf_set1.mkPDF(IC)
 		elif pdf_name=='NNPDF40': self.set=pdf_set2.mkPDF(0)
 		elif pdf_name=='CT10': self.set=pdf_set3.mkPDF(0)
+		elif pdf_name=='CT14nlo': self.set=pdf_set4.mkPDF(0)
+		elif pdf_name=='CT14lo': self.set=pdf_set5.mkPDF(0)
 
 		#self.nucleon='proton'# 'neutron', 'lead'
 		
