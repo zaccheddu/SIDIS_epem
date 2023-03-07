@@ -74,10 +74,16 @@ class polarization :
 
 		qT_max = QQ*self.coef
 
+		#print('xb = '+str(xb2))
+		#print('QQ = '+str(QQ))
+
+
 		def fnc(btt):
 
 			res = fnt.cross_sec2(had1,had2,z1,xb2,scl.mu_b(btt,xb2,y),y)
 			#print(scl.mu_b(btt))
+			#print('mu_b = '+str(scl.mu_b(btt,xb2,y)))
+
 			if self.mdl_den == 'gauss' : res = res*mdl1.MD_gauss(btt,z1,xb2,y,wdt1_unp)
 			elif self.mdl_den == 'pwr_lw_star' : res = res*mdl1.MD_bstar(btt,2.,z1,xb2,y,1.)
 			#res = res*mdl2.MD_gauss(btt,z2,wdt2_unp)

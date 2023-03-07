@@ -48,11 +48,11 @@ df3 = pd.read_csv('fit_parameters/dfs_/fit_hadron_coef_0.27_chi_1.447__True_gk_P
 
 def grids_lp(df,su2,charm,sep,IC,pdf_name):
 
-    yy=0.5
+    yy=0.4
     dati_lp = pd.read_csv("fit_parameters/lprot_point.csv")
     if sep == 28.6:dati_lp=dati_lp.loc[(dati_lp['xb']>0.05)]
 
-    fnc = polarization(0.27,sep)
+    fnc = polarization(0.27,sep**2)
     fnc.mass = 1.115 
     fnc.frag2 = 'dss'
     fnc.g_k = 'PV17'
@@ -159,11 +159,11 @@ a
 
 def grids_ln(df,su2,charm,sep,IC,pdf_name):
 
-    yy=0.5
+    yy=0.4
     dati_lp = pd.read_csv("fit_parameters/lneutr_point.csv")
     if sep == 28.6:dati_lp=dati_lp.loc[(dati_lp['xb']>0.05)]
 
-    fnc = polarization(0.27,sep)
+    fnc = polarization(0.27,sep**2)
     fnc.mass = 1.115 
     fnc.frag2 = 'dss'
     fnc.g_k = 'PV17'
@@ -301,11 +301,11 @@ cut_dfs=600
 def grids_lp_bands(df_prm,df,su2,charm,sep,IC,pdf_name):
     df_prm=df_prm.loc[(df_prm.index<cut_dfs)]
     
-    yy=0.5
+    yy=0.4
     dati_lp = pd.read_csv("fit_parameters/lprot_point.csv")
     if sep == 28.6:dati_lp=dati_lp.loc[(dati_lp['xb']>0.05)]
 
-    fnc = polarization(0.27,sep)
+    fnc = polarization(0.27,sep**2)
     fnc.mass = 1.115 
     fnc.frag2 = 'dss'
     fnc.g_k = 'PV17'
@@ -456,11 +456,12 @@ def grids_lp_bands(df_prm,df,su2,charm,sep,IC,pdf_name):
 def grids_ln_bands(df_prm,df,su2,charm,sep,IC,pdf_name):
     df_prm=df_prm.loc[(df_prm.index<cut_dfs)]
     
-    yy=0.5
+    yy=0.4
     dati_lp = pd.read_csv("fit_parameters/lneutr_point.csv")
     if sep == 28.6:dati_lp=dati_lp.loc[(dati_lp['xb']>0.05)]
+    #sep=sep**2
 
-    fnc = polarization(0.27,sep)
+    fnc = polarization(0.27,sep**2)
     fnc.mass = 1.115 
     fnc.frag2 = 'dss'
     fnc.g_k = 'PV17'
@@ -601,9 +602,9 @@ def grids_ln_bands(df_prm,df,su2,charm,sep,IC,pdf_name):
 
 # In[19]:
 
-sep = 44.7 # 28.6, 44.7, 63.2, 104.9, 140.7
+sep = 28.6 # 28.6, 44.7, 63.2, 104.9, 140.7
 
-sep2 = 28.6 # 28.6, 44.7, 63.2, 104.9, 140.7
+sep2 = 63.2 # 28.6, 44.7, 63.2, 104.9, 140.7
 pdf_name1='CT14IC'# 'NNPDF40'#, 'CT14IC', 'CT10'
 pdf_name2='NNPDF40'# 'NNPDF40'#, 'CT14IC', 'CT10'
 
@@ -619,18 +620,18 @@ charm3='yes'
 #grids_lp_bands(dfs1,df1,su2_1,charm1,sep,IC,pdf_name)
 
 
-#p1 = multiprocessing.Process(target=grids_lp_bands,args=(dfs2,df2,su2_2,charm2,sep,0,pdf_name1))
+#p1 = multiprocessing.Process(target=grids_lp_bands,args=(dfs1,df1,su2_1,charm1,sep,IC,pdf_name1))
 p2 = multiprocessing.Process(target=grids_lp_bands,args=(dfs2,df2,su2_2,charm2,sep,2,pdf_name1))
-p3 = multiprocessing.Process(target=grids_lp_bands,args=(dfs2,df2,su2_2,charm2,sep,1,pdf_name2))
+p3 = multiprocessing.Process(target=grids_lp_bands,args=(dfs2,df2,su2_2,charm2,sep,IC,pdf_name2))
 
+p4 = multiprocessing.Process(target=grids_lp_bands,args=(dfs3,df3,su2_3,charm3,sep,2,pdf_name1))
+p5 = multiprocessing.Process(target=grids_lp_bands,args=(dfs3,df3,su2_3,charm3,sep,IC,pdf_name2))
 
-p4 = multiprocessing.Process(target=grids_lp_bands,args=(dfs2,df2,su2_2,charm2,sep2,0,pdf_name1))
-p5 = multiprocessing.Process(target=grids_lp_bands,args=(dfs2,df2,su2_2,charm2,sep2,2,pdf_name1))
-p6 = multiprocessing.Process(target=grids_lp_bands,args=(dfs2,df2,su2_2,charm2,sep2,1,pdf_name2))
+p6 = multiprocessing.Process(target=grids_ln_bands,args=(dfs2,df2,su2_2,charm2,sep,2,pdf_name1))
+p7 = multiprocessing.Process(target=grids_ln_bands,args=(dfs2,df2,su2_2,charm2,sep,0,pdf_name2))
 
-#p7 = multiprocessing.Process(target=grids_ln_bands,args=(dfs3,df3,su2_3,charm3,sep,0,pdf_name1))
-#p8 = multiprocessing.Process(target=grids_ln_bands,args=(dfs3,df3,su2_3,charm3,sep,2,pdf_name1))
-#p9 = multiprocessing.Process(target=grids_ln_bands,args=(dfs3,df3,su2_3,charm3,sep,1,pdf_name2))
+p8 = multiprocessing.Process(target=grids_ln_bands,args=(dfs3,df3,su2_3,charm3,sep,2,pdf_name1))
+p9 = multiprocessing.Process(target=grids_ln_bands,args=(dfs3,df3,su2_3,charm3,sep,1,pdf_name2))
 
 
 
@@ -640,9 +641,9 @@ p3.start()
 p4.start()
 p5.start()
 p6.start()
-#p7.start()
-#p8.start()
-#p9.start()
+p7.start()
+p8.start()
+p9.start()
 
 
 #p1.join()
@@ -651,9 +652,9 @@ p3.join()
 p4.join()
 p5.join()
 p6.join()
-#p7.join()
-#p8.join()
-#p9.join()
+p7.join()
+p8.join()
+p9.join()
 
 
 
