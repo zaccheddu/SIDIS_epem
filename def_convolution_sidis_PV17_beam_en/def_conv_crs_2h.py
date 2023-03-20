@@ -79,7 +79,6 @@ class polarization :
 
 
 		def fnc(btt):
-
 			res = fnt.cross_sec2(had1,had2,z1,xb2,scl.mu_b(btt,xb2,y),y)
 			#print(scl.mu_b(btt))
 			#print('mu_b = '+str(scl.mu_b(btt,xb2,y)))
@@ -89,7 +88,6 @@ class polarization :
 			#res = res*mdl2.MD_gauss(btt,z2,wdt2_unp)
 			res = res*mdl2.Mf_pv17(btt,xb2,y) #PV17
 			#res = res*mdl2.MD(btt,2.,1.)
-			
 
 			#res = res*scl.soft_pert(btt)*scl.g_K(btt)
 			#res = res*scl.sudakov_integrated(btt)*scl.g_K(btt)
@@ -101,7 +99,6 @@ class polarization :
 
 			### PV17
 			elif self.g_k == 'PV17': res = res*scl.analytic_sudakov(btt,xb2,y)*scl.g_K_bac_lgm(btt,z1,xb2,y)
-
 			
 			return res		
 			
@@ -169,7 +166,6 @@ class polarization :
 			### PV17
 			elif self.g_k == 'PV17': res = res*scl.analytic_sudakov(btt,xb2,y)*scl.g_K_bac_lgm(btt,z1,xb2,y)
 
-
 			return res		
 
 		def fnc2(btt):
@@ -196,7 +192,6 @@ class polarization :
 			### PV17
 			elif self.g_k == 'PV17': res = res*scl.analytic_sudakov(btt,xb2,y)*scl.g_K_bac_lgm(btt,z1,xb2,y)
 
-			
 			return res		
 
 			
@@ -298,8 +293,8 @@ class polarization :
 	def ratio_y(self,had1,had2,z1,xb,yy,param,wdt_pol,mss):
 		#print(xb)
 		mass = 1.115	
-		num =  self.numerator(had1,had2,z1,xb,yy,param,wdt_pol,mss)
 		den = self.denominator(had1,had2,z1,xb,yy)
+		num =  self.numerator(had1,had2,z1,xb,yy,param,wdt_pol,mss)
 
 		#fnt = cr_sec()
 		#fnt.mass = self.mass  
@@ -316,13 +311,14 @@ class polarization :
 
 
 	def denominator_pt(self,had1,had2,z1,xb2,y,pt):
+		fnt = cr_sec(self.sep,self.IC_num,self.pdf_name)
 
-		fnt = cr_sec(self.sep,self.IC_num)
+		#fnt = cr_sec(self.sep,self.IC_num)
 		fnt.mass = self.mass        
 		#fnt.frag2 = self.frag2
 		#fnt.qq=self.scale
 		fnt.charm = self.charm
-		fnt.nucleon=self.nucleon
+		#fnt.nucleon=self.nucleon
 
 		mdl1 = model_bt(self.sep)
 		mdl1.mass = 1.115
@@ -383,13 +379,14 @@ class polarization :
 
 
 	def numerator_pt(self,had1,had2,z1,xb2,y,pt,param,wdt_pol,mss):
+		fnt = cr_sec(self.sep,self.IC_num,self.pdf_name)
 
-		fnt = cr_sec(self.sep,self.IC_num)
+		#fnt = cr_sec(self.sep,self.IC_num)
 		fnt.mass = self.mass        
 		#fnt.frag2 = self.frag2
 		#fnt.qq=self.scale
 		fnt.charm = self.charm
-		fnt.nucleon=self.nucleon
+		#fnt.nucleon=self.nucleon
 
 		mdl1 = model_bt(self.sep)
 		mdl1.mass = 1.115
