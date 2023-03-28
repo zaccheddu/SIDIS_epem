@@ -29,7 +29,7 @@ class model_bt():
 
 	def bt_str_mu(self,bt,x,y): 				 #define bt_star for mu_b_star with bmin
 
-		QQ = self.sep*x*y
+		QQ = self.sep*np.sqrt(x*y)
 		bmin = 2*e**(-euler_gamma)/QQ
 
 	
@@ -43,7 +43,7 @@ class model_bt():
 
 	def bt_c(self,bt,x,y): 
 	
-		QQ = self.sep*x*y
+		QQ = self.sep*np.sqrt(x*y)
 		bmin = 2*e**(-euler_gamma)/QQ
 	
 		b_new = sqrt(bt**2 + bmin**2)
@@ -68,7 +68,7 @@ class model_bt():
 
 	def MD_bstar(self,bt,pwr,zz,xb2,y,mass):  ## power-law non polarizzata
 
-		QQ = self.sep*xb2*y
+		QQ = self.sep*np.sqrt(xb2*y)
 		bmin = 2*e**(-euler_gamma)/QQ
 
 
@@ -80,7 +80,8 @@ class model_bt():
 
 
 		eta_p= (1 - (ml**2/zz**2/QQ**2)*xb2/(1-xb2))
-		zp1 = zz*sqrt(eta_p)		# momentum fraction
+		#zp1 = zz*sqrt(eta_p)		# momentum fraction
+		zp1 = zz*eta_p		# momentum fraction
 
 
 		###############
@@ -109,7 +110,7 @@ class model_bt():
 
 	def MD_gauss(self,bt,zz,xb2,y,unp_width):  ## gauss non polarizzata
 
-		QQ = self.sep*xb2*y
+		QQ = self.sep*np.sqrt(xb2*y)
 		bmin = 2*e**(-euler_gamma)/QQ
 
 
@@ -120,8 +121,9 @@ class model_bt():
 
 
 		eta_p= (1 - (ml**2/zz**2/QQ**2)*xb2/(1-xb2))
-		zp1 = zz*sqrt(eta_p)		# momentum fraction
-
+		#zp1 = zz*sqrt(eta_p)		# momentum fraction
+		zp1 = zz*eta_p		# momentum fraction
+ 
 
 		wdt=   unp_width
 		#print(wdt)
@@ -142,7 +144,7 @@ class model_bt():
 	
 	def MD_pv17(self,bt,zz,x,y):
 
-		QQ = self.sep*x*y
+		QQ = self.sep*np.sqrt(x*y)
 		bmin = 2*e**(-euler_gamma)/QQ
 
 	
@@ -179,7 +181,7 @@ class model_bt():
 	def Mf_pv17(self,bt,xx,y):
 
 
-		QQ = self.sep*xx*y
+		QQ = self.sep*np.sqrt(xx*y)
 		bmin = 2*e**(-euler_gamma)/QQ
 
 		b_new = sqrt(bt**2 + bmin**2)

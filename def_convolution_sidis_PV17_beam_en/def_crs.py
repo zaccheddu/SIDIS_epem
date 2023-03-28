@@ -55,11 +55,12 @@ class cr_sec:
 		pdf=self.set
 
 		#print(q)
-		QQ = self.sep*xb2*y
+		QQ = self.sep*np.sqrt(xb2*y)
 		eta_p= (1 - (ml**2/z1**2/QQ**2)*xb2/(1-xb2))
-		zp1 = z1*sqrt(eta_p)		# momentum fraction
+		#zp1 = z1*sqrt(eta_p)		# momentum fraction
+		zp1 = z1*eta_p		# momentum fraction
 
-		zlc1 = (z1 + zp1)/2	#light-cone momentum fraction
+		zlc1 = z1#(z1 + zp1)/2	#light-cone momentum fraction
 
 
 		if had1=='lbd': 
@@ -253,10 +254,11 @@ class cr_sec:
 		pdf=self.set
 		ml= self.mass
 
-		QQ = self.sep*xb2*y
+		QQ = self.sep*np.sqrt(xb2*y)
 		eta_p= (1 - (ml**2/z1**2/QQ**2)*xb2/(1-xb2))
 
-		zp1 = z1*sqrt(eta_p)		# momentum fraction
+		#zp1 = z1*sqrt(eta_p)		# momentum fraction
+		zp1 = z1*eta_p		# momentum fraction
 
 		#zlc1 =  (z1 + zp1)/2	#light-cone momentum fraction
 		zlc1 = z1

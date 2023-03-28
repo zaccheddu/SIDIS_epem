@@ -52,7 +52,7 @@ def grids_lp(df,su2,charm,sep,IC,pdf_name):
     dati_lp = pd.read_csv("fit_parameters/lprot_point.csv")
     if sep == 28.6:dati_lp=dati_lp.loc[(dati_lp['xb']>0.05)]
 
-    fnc = polarization(0.27,sep**2)
+    fnc = polarization(0.27,sep)
     fnc.mass = 1.115 
     fnc.frag2 = 'dss'
     fnc.g_k = 'PV17'
@@ -163,7 +163,7 @@ def grids_ln(df,su2,charm,sep,IC,pdf_name):
     dati_lp = pd.read_csv("fit_parameters/lneutr_point.csv")
     if sep == 28.6:dati_lp=dati_lp.loc[(dati_lp['xb']>0.05)]
 
-    fnc = polarization(0.27,sep**2)
+    fnc = polarization(0.27,sep)
     fnc.mass = 1.115 
     fnc.frag2 = 'dss'
     fnc.g_k = 'PV17'
@@ -305,7 +305,7 @@ def grids_lp_bands(df_prm,df,su2,charm,sep,IC,pdf_name):
     dati_lp = pd.read_csv("fit_parameters/lprot_point.csv")
     if sep == 28.6:dati_lp=dati_lp.loc[(dati_lp['xb']>0.05)]
 
-    fnc = polarization(0.27,sep**2)
+    fnc = polarization(0.27,sep)
     fnc.mass = 1.115 
     fnc.frag2 = 'dss'
     fnc.g_k = 'PV17'
@@ -461,7 +461,7 @@ def grids_ln_bands(df_prm,df,su2,charm,sep,IC,pdf_name):
     if sep == 28.6:dati_lp=dati_lp.loc[(dati_lp['xb']>0.05)]
     #sep=sep**2
 
-    fnc = polarization(0.27,sep**2)
+    fnc = polarization(0.27,sep)
     fnc.mass = 1.115 
     fnc.frag2 = 'dss'
     fnc.g_k = 'PV17'
@@ -608,34 +608,44 @@ sep2 = 63.2 # 28.6, 44.7, 63.2, 104.9, 140.7
 pdf_name1='CT14IC'# 'NNPDF40'#, 'CT14IC', 'CT10'
 pdf_name2='NNPDF40'# 'NNPDF40'#, 'CT14IC', 'CT10'
 
-IC=0
+IC=0 # 0 noIC, 2 BHPS
+
+
 
 su2_1= 'no'
 charm1='no'
+#
 su2_2= 'no'
 charm2='yes'
+#
 su2_3= 'yes'
 charm3='yes'
 
 #grids_lp_bands(dfs1,df1,su2_1,charm1,sep,IC,pdf_name)
 
-
-#p1 = multiprocessing.Process(target=grids_lp_bands,args=(dfs1,df1,su2_1,charm1,sep,IC,pdf_name1))
-p2 = multiprocessing.Process(target=grids_lp_bands,args=(dfs2,df2,su2_2,charm2,sep,2,pdf_name1))
-p3 = multiprocessing.Process(target=grids_lp_bands,args=(dfs2,df2,su2_2,charm2,sep,IC,pdf_name2))
-
-p4 = multiprocessing.Process(target=grids_lp_bands,args=(dfs3,df3,su2_3,charm3,sep,2,pdf_name1))
-p5 = multiprocessing.Process(target=grids_lp_bands,args=(dfs3,df3,su2_3,charm3,sep,IC,pdf_name2))
-
-p6 = multiprocessing.Process(target=grids_ln_bands,args=(dfs2,df2,su2_2,charm2,sep,2,pdf_name1))
-p7 = multiprocessing.Process(target=grids_ln_bands,args=(dfs2,df2,su2_2,charm2,sep,0,pdf_name2))
-
-p8 = multiprocessing.Process(target=grids_ln_bands,args=(dfs3,df3,su2_3,charm3,sep,2,pdf_name1))
-p9 = multiprocessing.Process(target=grids_ln_bands,args=(dfs3,df3,su2_3,charm3,sep,1,pdf_name2))
+start = time.time()
 
 
 
-#p1.start()
+p1 = multiprocessing.Process(target=grids_ln_bands,args=(dfs1,df1,su2_1,charm1,sep,IC,pdf_name1))
+p2 = multiprocessing.Process(target=grids_ln_bands,args=(dfs2,df2,su2_2,charm2,sep,IC,pdf_name1))
+p3 = multiprocessing.Process(target=grids_ln_bands,args=(dfs3,df3,su2_3,charm3,sep,IC,pdf_name1))
+
+p4 = multiprocessing.Process(target=grids_ln_bands,args=(dfs1,df1,su2_1,charm1,sep2,IC,pdf_name1))
+p5 = multiprocessing.Process(target=grids_ln_bands,args=(dfs2,df2,su2_2,charm2,sep2,IC,pdf_name1))
+p6 = multiprocessing.Process(target=grids_ln_bands,args=(dfs3,df3,su2_3,charm3,sep2,IC,pdf_name1))
+
+p7 = multiprocessing.Process(target=grids_ln_bands,args=(dfs2,df2,su2_2,charm2,sep,2,pdf_name1))
+p8 = multiprocessing.Process(target=grids_ln_bands,args=(dfs2,df2,su2_2,charm2,sep,IC,pdf_name2))
+
+p9 = multiprocessing.Process(target=grids_ln_bands,args=(dfs3,df3,su2_3,charm3,sep,2,pdf_name1))
+p10 = multiprocessing.Process(target=grids_ln_bands,args=(dfs3,df3,su2_3,charm3,sep,IC,pdf_name2))
+
+#p9 = multiprocessing.Process(target=grids_lp_bands,args=(dfs3,df3,su2_3,charm3,sep,IC,pdf_name2))
+
+
+
+p1.start()
 p2.start()
 p3.start()
 p4.start()
@@ -644,9 +654,10 @@ p6.start()
 p7.start()
 p8.start()
 p9.start()
+p10.start()
 
 
-#p1.join()
+p1.join()
 p2.join()
 p3.join()
 p4.join()
@@ -655,8 +666,17 @@ p6.join()
 p7.join()
 p8.join()
 p9.join()
+p10.join()
 
 
+end = time.time()
+
+mins=(end -start)/60
+print('¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯')
+print('time passed:')
+
+print(str(end - start) +'   ' + 'sec')
+print(str((end - start)/60) +'   ' + 'min')
 
 
 

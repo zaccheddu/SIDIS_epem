@@ -28,7 +28,7 @@ class Soft:
 		self.nf= 4 #3	#active flavors
 		self.Tf = 1/2	
 
-		self.sep= sep   # GeV
+		self.sep= sep   # GeV square root of S
 		
 		#self.scale= 10.58  # GeV
 
@@ -48,7 +48,7 @@ class Soft:
 
 	def bt_str_mu(self,bt,x,y): 				 #define bt_star for mu_b_star with bmin
 	
-		QQ = self.sep*x*y
+		QQ = self.sep*np.sqrt(x*y)
 		bmin = 2*e**(-euler_gamma)/QQ
 		
 		
@@ -62,7 +62,7 @@ class Soft:
 
 	def bt_str_mu_pv17(self,bt,x,y): 				 #define bt_star for mu_b_star with bmin
 
-		QQ = self.sep*x*y
+		QQ = self.sep*np.sqrt(x*y)
 		bmin = 2*e**(-euler_gamma)/QQ
 	
 		#print(bt)
@@ -146,7 +146,7 @@ class Soft:
 		gammak1 = 8*self.CF
 		gammak2 = self.CA*self.CF*(536/9 - 8*np.pi**2/3) - 80*self.CF*self.nf/9
 
-		QQ = self.sep*x*y
+		QQ = self.sep*np.sqrt(x*y)
 		mu_bstr = self.mu_b(bt,x,y)
 		#bmin = 2*e**(-euler_gamma)/QQ
 	
@@ -235,8 +235,8 @@ class Soft:
 		elif had2 == 'k+' or had2 == 'k-' : ml2 = 0.4937  # kaon mass
 		 
 		
-		eta_p= (1 - 4*ml1**2/z1**2/self.scale**2)
-		zp1 = z1*sqrt(eta_p)		# momentum fraction
+		#eta_p= (1 - 4*ml1**2/z1**2/self.scale**2)
+		zp1 = z1#*sqrt(eta_p)		# momentum fraction
 
 		zlc1 = (z1 + zp1)/2	#light-cone momentum fraction
 
@@ -261,8 +261,8 @@ class Soft:
 		ml1= 1.115 # lambda mass
 		
 	
-		eta_p= (1 - 4*ml1**2/z1**2/self.scale**2)
-		zp1 = z1*sqrt(eta_p)		# momentum fraction
+		#eta_p= (1 - 4*ml1**2/z1**2/self.scale**2)
+		zp1 = z1#*sqrt(eta_p)		# momentum fraction
 
 		zlc1 = (z1 + zp1)/2	#light-cone momentum fraction
 
@@ -297,8 +297,8 @@ class Soft:
 		elif had2 == 'k+' or had2 == 'k-' : ml2 = 0.4937  # kaon mass
 		 
 		
-		eta_p= (1 - 4*ml1**2/z1**2/self.scale**2)
-		zp1 = z1*sqrt(eta_p)		# momentum fraction
+		#eta_p= (1 - 4*ml1**2/z1**2/self.scale**2)
+		zp1 = z1#*sqrt(eta_p)		# momentum fraction
 
 		zlc1 = (z1 + zp1)/2	#light-cone momentum fraction
 
@@ -324,8 +324,8 @@ class Soft:
 		ml1= 1.115 # lambda mass
 		
 	
-		eta_p= (1 - 4*ml1**2/z1**2/self.scale**2)
-		zp1 = z1*sqrt(eta_p)		# momentum fraction
+		#eta_p= (1 - 4*ml1**2/z1**2/self.scale**2)
+		zp1 = z1#*sqrt(eta_p)		# momentum fraction
 
 		zlc1 = (z1 + zp1)/2	#light-cone momentum fraction
 
@@ -353,7 +353,7 @@ class Soft:
 	def g_K_bac_lgm(self,bt,z1,xb2,y):	# LOG G_K
 
 
-		QQ = self.sep*xb2*y
+		QQ = self.sep*np.sqrt(xb2*y)
 		bmin = 2*e**(-euler_gamma)/QQ
 
 		ml1= 1.115 # lambda mass
@@ -362,8 +362,8 @@ class Soft:
 		#if had2 == 'pi+' or had2 == 'pi-' : ml2 = 0.13957  # pion mass
 		#elif had2 == 'k+' or had2 == 'k-' : ml2 = 0.4937  # kaon mass
 		 
-		eta_p= (1 - (ml1**2/z1**2/QQ**2)*xb2/(1-xb2))
-		zp1 = z1*sqrt(eta_p)		# momentum fraction
+		#eta_p= (1 - (ml1**2/z1**2/QQ**2)*xb2/(1-xb2))
+		zp1 = z1#*sqrt(eta_p)		# momentum fraction
 		
 		#eta_p= (1 - 4*ml1**2/z1**2/self.scale**2)
 		#zp1 = z1*sqrt(eta_p)		# momentum fraction
@@ -390,8 +390,8 @@ class Soft:
 		ml1= 1.115 # lambda mass
 		
 	
-		eta_p= (1 - 4*ml1**2/z1**2/self.scale**2)
-		zp1 = z1*sqrt(eta_p)		# momentum fraction
+		#eta_p= (1 - 4*ml1**2/z1**2/self.scale**2)
+		zp1 = z1#*sqrt(eta_p)		# momentum fraction
 
 		zlc1 = (z1 + zp1)/2	#light-cone momentum fraction
 
@@ -463,8 +463,8 @@ class Soft:
 		elif had2 == 'k+' or had2 == 'k-' : ml2 = 0.4937  # kaon mass
 		 
 		
-		eta_p= (1 - 4*ml1**2/z1**2/self.scale**2)
-		zp1 = z1*sqrt(eta_p)		# momentum fraction
+		#eta_p= (1 - 4*ml1**2/z1**2/self.scale**2)
+		zp1 = z1#*sqrt(eta_p)		# momentum fraction
 
 		zlc1 = (z1 + zp1)/2	#light-cone momentum fraction
 
@@ -494,8 +494,8 @@ class Soft:
 		ml1= 1.115 # lambda mass
 		
 	
-		eta_p= (1 - 4*ml1**2/z1**2/self.scale**2)
-		zp1 = z1*sqrt(eta_p)		# momentum fraction
+		#eta_p= (1 - 4*ml1**2/z1**2/self.scale**2)
+		zp1 = z1#*sqrt(eta_p)		# momentum fraction
 
 		zlc1 = (z1 + zp1)/2	#light-cone momentum fraction
 
@@ -566,8 +566,8 @@ class Soft:
 		elif had2 == 'k+' or had2 == 'k-' : ml2 = 0.4937  # kaon mass
 		 
 		
-		eta_p= (1 - 4*ml1**2/z1**2/self.scale**2)
-		zp1 = z1*sqrt(eta_p)		# momentum fraction
+		#eta_p= (1 - 4*ml1**2/z1**2/self.scale**2)
+		zp1 = z1#*sqrt(eta_p)		# momentum fraction
 
 		zlc1 = (z1 + zp1)/2	#light-cone momentum fraction
 
@@ -596,8 +596,8 @@ class Soft:
 		ml1= 1.115 # lambda mass
 		
 	
-		eta_p= (1 - 4*ml1**2/z1**2/self.scale**2)
-		zp1 = z1*sqrt(eta_p)		# momentum fraction
+		#eta_p= (1 - 4*ml1**2/z1**2/self.scale**2)
+		zp1 = z1#*sqrt(eta_p)		# momentum fraction
 
 		zlc1 = (z1 + zp1)/2	#light-cone momentum fraction
 
@@ -636,8 +636,8 @@ class Soft:
 		elif had2 == 'k+' or had2 == 'k-' : ml2 = 0.4937  # kaon mass
 		 
 		
-		eta_p= (1 - 4*ml1**2/z1**2/self.scale**2)
-		zp1 = z1*sqrt(eta_p)		# momentum fraction
+		#eta_p= (1 - 4*ml1**2/z1**2/self.scale**2)
+		zp1 = z1#*sqrt(eta_p)		# momentum fraction
 
 		zlc1 = (z1 + zp1)/2	#light-cone momentum fraction
 
@@ -666,8 +666,8 @@ class Soft:
 		ml1= 1.115 # lambda mass
 		
 	
-		eta_p= (1 - 4*ml1**2/z1**2/self.scale**2)
-		zp1 = z1*sqrt(eta_p)		# momentum fraction
+		#eta_p= (1 - 4*ml1**2/z1**2/self.scale**2)
+		zp1 = z1#*sqrt(eta_p)		# momentum fraction
 
 		zlc1 = (z1 + zp1)/2	#light-cone momentum fraction
 
@@ -756,8 +756,8 @@ class Soft:
 		elif had2 == 'k+' or had2 == 'k-' : ml2 = 0.4937  # kaon mass
 		 
 		
-		eta_p= (1 - 4*ml1**2/z1**2/self.scale**2)
-		zp1 = z1*sqrt(eta_p)		# momentum fraction
+		#eta_p= (1 - 4*ml1**2/z1**2/self.scale**2)
+		zp1 = z1#*sqrt(eta_p)		# momentum fraction
 
 		zlc1 = (z1 + zp1)/2	#light-cone momentum fraction
 
@@ -788,8 +788,8 @@ class Soft:
 		ml1= 1.115 # lambda mass
 		
 	
-		eta_p= (1 - 4*ml1**2/z1**2/self.scale**2)
-		zp1 = z1*sqrt(eta_p)		# momentum fraction
+		#eta_p= (1 - 4*ml1**2/z1**2/self.scale**2)
+		zp1 = z1#*sqrt(eta_p)		# momentum fraction
 
 		zlc1 = (z1 + zp1)/2	#light-cone momentum fraction
 

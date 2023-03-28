@@ -630,8 +630,8 @@ ft.su2='no'
 ft.charm= 'no'
 ft.nf=3
 ft.scale = 10.58
-ft.cut_h2= 5
-
+ft.cut_h2= 0
+ft.correct = 'no'
 
 #ft.fit()
 
@@ -648,7 +648,7 @@ ft2.su2='no'
 ft2.charm= 'yes'
 ft2.nf=4
 ft2.scale = 10.58
-ft2.cut_h2= 5
+ft2.cut_h2= 0
 ft2.coef = 0.27
 ft2.ado=1.2
 ft2.ado_fix = False
@@ -670,7 +670,7 @@ ht.su2='yes'
 ht.charm= 'yes'
 ht.nf=4
 ht.scale = 10.58
-ht.cut_h2= 5
+ht.cut_h2= 0
 ht.correct = 'no'
 
 ht.aup=0.
@@ -693,26 +693,26 @@ ht.coef=0.27
 
 p1 = multiprocessing.Process(target=ft.fit)
 p2 = multiprocessing.Process(target=ft2.fit)
-p3 = multiprocessing.Process(target=gt.fit)
-p4 = multiprocessing.Process(target=gt2.fit)
+#p3 = multiprocessing.Process(target=gt.fit)
+#p4 = multiprocessing.Process(target=gt2.fit)
 p5 = multiprocessing.Process(target=ht.fit)
-p6 = multiprocessing.Process(target=ht2.fit)
+#p6 = multiprocessing.Process(target=ht2.fit)
 
 
-#p1.start()
+p1.start()
 p2.start()
 #p3.start()
 #p4.start()
-#p5.start()
+p5.start()
 #p6.start()
 
 
 
-#p1.join()
+p1.join()
 p2.join()
 #p3.join()
 #p4.join()
-#p5.join()
+p5.join()
 #p6.join()
 
 

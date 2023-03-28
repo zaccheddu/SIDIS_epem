@@ -70,7 +70,7 @@ class polarization :
 		scl.nf=self.nf
 		#scl.scale = self.scale	
 
-		QQ = self.sep*xb2*y
+		QQ = self.sep*np.sqrt(xb2*y)
 
 		qT_max = QQ*self.coef
 
@@ -139,7 +139,7 @@ class polarization :
 		scl.bmax = self.bmax 
 		#scl.scale = self.scale	
 		scl.nf=self.nf
-		QQ = self.sep*xb2*y
+		QQ = self.sep*np.sqrt(xb2*y)
 
 		qT_max = QQ*self.coef
 
