@@ -136,19 +136,19 @@ class polarization :
 		def fnc1(btt):
 
 			res = btt*fnt.cross_sec2_polda(had1,had2,z1,z2,scl.mu_b(btt),param)
-			#print(res)
+
 			if self.mdl_num == 'gauss' :res = res*mdl1.MD_gauss(btt,z1,wdt_pol)# h1 model
 			elif self.mdl_num == 'pwr_lw' : res = res*mdl1.MD(btt,wdt_pol,mss)
 			elif self.mdl_num == 'pwr_lw_pt' : res = res*mdl1.MD_pt(btt,wdt_pol,z1,mss)
 			elif self.mdl_num == 'pwr_lw_star' : res = res*mdl1.MD_bstar(btt,wdt_pol,z1,mss)
 			elif self.mdl_num == 'pwr_lw_ratio' : res = res*mdl1.MD_bstar_ratio(btt,wdt_pol,z1,mss)
-			
+
 			#res = res*mdl2.MD_gauss(btt,z2,wdt2_unp)
 			res = res*mdl2.MD_pv17(btt,z2) #PV17
 			#res = res*mdl2.MD(btt,2.,1.)
 
 			res = res*special.struve(0,btt*qT_max)
-			
+
 			#res = res*scl.soft_pert(btt)*scl.g_K(btt)
 			#res = res*scl.sudakov_integrated(btt)*scl.g_K(btt)
 			if self.g_k == 'log_b':res = res*scl.analytic_sudakov(btt)*scl.g_K(btt)
@@ -170,7 +170,7 @@ class polarization :
 			### PV17
 			elif self.g_k == 'PV17': res = res*scl.analytic_sudakov(btt)*scl.g_K_bac_lgm(btt,had2,z1,z2)
 
-
+			#print(res)
 			return res		
 
 		def fnc2(btt):
@@ -218,7 +218,7 @@ class polarization :
 		test2 = lambda bt : fnc2(bt)
 
 		
-
+		#print(qT_max)
 		N=10
 		fbt1 = FBT(1)
 		wfbt1 = fbt1.fbt(test1,qT_max,N)

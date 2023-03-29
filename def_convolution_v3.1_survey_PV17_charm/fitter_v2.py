@@ -126,7 +126,7 @@ class fitter:
 
 		self.coef = 0.25 # # 0.3 #
 
-		self.tollerance = 20.		
+		self.tollerance = 2.	## standard 20	
 		
 		self.g_k_1h = 'PV17'
 		self.g_k_2h = 'PV17'
@@ -557,6 +557,74 @@ class fitter:
 		df.to_csv(r'fit_parameters/fit_'+str(self.type)+'_coef_'+ str(self.coef)+'_chi_'+str(chi_dof)+'__'+str(fit6.valid)+'_gk_'+str(self.g_k_2h)+'_su_'+str(self.su2)+'_charm'+str(self.charm)\
 			+'_correction_'+str(self.correct) +'.csv',index=False)
 
+		if self.cut_h2==0:
+			ct_h2 = 'pions'
+		elif self.cut_h2==5:
+			ct_h2 = 'pions_cut'
+		
+		lst1 = least_sq(ct_h2,ct_h1,charm,mdl_den)
+		lst1.mm = self.mass
+		#lst.data_cut = self.cut
+		lst1.unp_wd = self.wd
+		lst1.f2 = self.ff2
+	
+		lst1.coef = self.coef
+
+		lst1.g_k_1h = self.g_k_1h 
+		lst1.g_k_2h = self.g_k_2h 
+
+		lst1.mdl_num = self.mdl_num
+		lst1.mdl_den = self.mdl_den
+
+		lst1.su2 = self.su2
+		lst1.nf=self.nf
+		#lst.charm = self.charm
+		lst1.scale = self.scale 
+		lst1.correct = self.correct
+		#prm=pd.read_csv('fit_parameters/fit_hadron_coef_0.27_chi_1.259__True_gk_PV17_su_no_charmyes_correction_no.csv')
+
+		prm=pd.read_csv(r'fit_parameters/fit_'+str(self.type)+'_coef_'+ str(self.coef)+'_chi_'+str(chi_dof)+'__'+str(fit6.valid)+'_gk_'+str(self.g_k_2h)+'_su_'+str(self.su2)+'_charm'+str(self.charm)\
+			+'_correction_'+str(self.correct) +'.csv')
+
+
+		chi_pion=lst1.least_squares_lh(prm['NUP'].to_numpy(),prm['NDO'].to_numpy(),prm['NST'].to_numpy(),prm['NSEA'].to_numpy(),\
+                         prm['AUP'].to_numpy(),prm['ADO'].to_numpy(),prm['AST'].to_numpy(),prm['ASEA'].to_numpy(),\
+                         prm['BUP'].to_numpy(),prm['BDO'].to_numpy(),prm['BST'].to_numpy(),prm['BSEA'].to_numpy(),prm['PP'].to_numpy(),prm['MSS'].to_numpy())
+                         
+		#chi_pion=lst1.least_squares_lh(df['NUP'].to_numpy(),df['NDO'].to_numpy(),df['NST'].to_numpy(),df['NSEA'].to_numpy(),\
+                #         df['AUP'].to_numpy(),df['ADO'].to_numpy(),df['AST'].to_numpy(),df['ASEA'].to_numpy(),\
+                #         df['BUP'].to_numpy(),df['BDO'].to_numpy(),df['BST'].to_numpy(),df['BSEA'].to_numpy(),df['PP'].to_numpy(),df['MSS'].to_numpy())
+
+		if self.cut_h2==0:
+			ct_h2 = 'kaons'
+		elif self.cut_h2==5:
+			ct_h2 = 'kaons_cut'
+		
+		lst2 = least_sq(ct_h2,ct_h1,charm,mdl_den)
+		lst2.mm = self.mass
+		#lst.data_cut = self.cut
+		lst2.unp_wd = self.wd
+		lst2.f2 = self.ff2
+	
+		lst2.coef = self.coef
+
+		lst2.g_k_1h = self.g_k_1h 
+		lst2.g_k_2h = self.g_k_2h 
+
+		lst2.mdl_num = self.mdl_num
+		lst2.mdl_den = self.mdl_den
+
+		lst2.su2 = self.su2
+		lst2.nf=self.nf
+		#lst.charm = self.charm
+		lst2.scale = self.scale 
+		lst2.correct = self.correct
+
+		chi_kaon=lst2.least_squares_lh(prm['NUP'].to_numpy(),prm['NDO'].to_numpy(),prm['NST'].to_numpy(),prm['NSEA'].to_numpy(),\
+                         prm['AUP'].to_numpy(),prm['ADO'].to_numpy(),prm['AST'].to_numpy(),prm['ASEA'].to_numpy(),\
+                         prm['BUP'].to_numpy(),prm['BDO'].to_numpy(),prm['BST'].to_numpy(),prm['BSEA'].to_numpy(),prm['PP'].to_numpy(),prm['MSS'].to_numpy())
+
+
 		
 		sourceFile = open(r'fit_parameters/fit_'+str(self.type)+'_coef_'+ str(self.coef)+'_chi_'+str(chi_dof)+'__'+str(fit6.valid)+'_gk_'+str(self.g_k_2h)+'_su_'+str(self.su2)+'_charm'+str(self.charm) \
 			+'_correction_'+str(self.correct)+'.txt', 'w')
@@ -587,6 +655,9 @@ class fitter:
 		print('chi_square = '+ str(fit6.fval),file = sourceFile)
 		print('number parameters = '+ str(fit6.nfit),file = sourceFile)
 		print('________________________',file = sourceFile)
+		print('chi_square pions = '+ str(chi_pion)+ ' ;  points = '+ str(len(lst1.z1)),file = sourceFile)
+		print('chi_square kaons = '+ str(chi_kaon)+ ' ;  points = '+ str(len(lst2.z1)),file = sourceFile)
+
 		print('________________________',file = sourceFile)
 
 		print('SU2 simmetry = '+ str(self.su2),file = sourceFile)
@@ -699,8 +770,8 @@ p5 = multiprocessing.Process(target=ht.fit)
 #p6 = multiprocessing.Process(target=ht2.fit)
 
 
-p1.start()
-p2.start()
+#p1.start()
+#p2.start()
 #p3.start()
 #p4.start()
 p5.start()
@@ -708,8 +779,8 @@ p5.start()
 
 
 
-p1.join()
-p2.join()
+#p1.join()
+#p2.join()
 #p3.join()
 #p4.join()
 p5.join()

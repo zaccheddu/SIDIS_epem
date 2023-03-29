@@ -80,6 +80,8 @@ ________________________
 chi_square = 228.35882265703435
 number parameters = 8
 ________________________
+chi_square pions = 60.68624741647464 ;  points = 128
+chi_square kaons = 167.67257524055972 ;  points = 128
 ________________________
 SU2 simmetry = no
 Charm = no
