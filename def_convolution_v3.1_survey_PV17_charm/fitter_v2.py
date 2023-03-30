@@ -126,7 +126,7 @@ class fitter:
 
 		self.coef = 0.25 # # 0.3 #
 
-		self.tollerance = 2.	## standard 20	
+		self.tollerance = 200.	## standard 20	
 		
 		self.g_k_1h = 'PV17'
 		self.g_k_2h = 'PV17'
@@ -762,11 +762,11 @@ ht.bsea_fix = True
 ht.coef=0.27
 
 
-p1 = multiprocessing.Process(target=ft.fit)
-p2 = multiprocessing.Process(target=ft2.fit)
+#p1 = multiprocessing.Process(target=ft.fit)
+#p2 = multiprocessing.Process(target=ft2.fit)
 #p3 = multiprocessing.Process(target=gt.fit)
 #p4 = multiprocessing.Process(target=gt2.fit)
-p5 = multiprocessing.Process(target=ht.fit)
+#p5 = multiprocessing.Process(target=ht.fit)
 #p6 = multiprocessing.Process(target=ht2.fit)
 
 
@@ -774,7 +774,7 @@ p5 = multiprocessing.Process(target=ht.fit)
 #p2.start()
 #p3.start()
 #p4.start()
-p5.start()
+#p5.start()
 #p6.start()
 
 
@@ -783,77 +783,12 @@ p5.start()
 #p2.join()
 #p3.join()
 #p4.join()
-p5.join()
+#p5.join()
 #p6.join()
 
 
-
-'''
-ht.mdl_den = 'pwr_lw_star'
-ht.mdl_num = 'gauss'
-ht.pp =.1
-ht.pp_down_lm = 0.
-ht.pp_up_lm  = .2
-ht.mss=0.
-ht.mss_fix = True
-
-ht.su2='yes'
-ht.charm= 'yes'
-ht.scale = 10.58
-ht.cut_h2= 5
-
-ht.aup=0.
-ht.ado=0.
-
-ht.bup = 1.2
-ht.bdo = 1.
-ht.bst = 0.
-ht.bsea = 0.
-
-ht.aup_fix = True
-ht.ado_fix = True
-
-ht.bup_fix = False
-ht.bdo_fix = False
-ht.bst_fix = True
-ht.bsea_fix = True
-ht.coef=0.27
-
-
-#ft.fit()
-
-###
-ht2.mdl_den = 'pwr_lw_star'
-ht2.mdl_num = 'gauss'
-ht2.pp =.1
-ht2.pp_down_lm = 0.
-ht2.pp_up_lm  = .2
-ht2.mss=0.
-ht2.mss_fix = True
-
-ht2.su2='yes'
-ht2.charm= 'yes'
-ht2.scale = 10.58
-ht2.cut_h2= 0
-
-ht2.aup=0.
-ht2.ado=0.
-
-ht2.bup = 1.2
-ht2.bdo = 1.
-ht2.bst = 0.
-ht2.bsea = 0.
-
-ht2.aup_fix = True
-ht2.ado_fix = True
-
-ht2.bup_fix = False
-ht2.bdo_fix = False
-ht2.bst_fix = True
-ht2.bsea_fix = True
-
-ht2.coef=0.27
-
+################
+############## TEST  3 SCENARIO
 
 ht.mdl_den = 'pwr_lw_star'
 ht.mdl_num = 'gauss'
@@ -865,11 +800,13 @@ ht.mss_fix = True
 
 ht.su2='yes'
 ht.charm= 'yes'
+ht.nf=4
 ht.scale = 10.58
 ht.cut_h2= 5
+ht.correct = 'no'
 
 ht.aup=0.
-ht.ado=0.
+ht.ado=1.1
 
 ht.bup = 1.2
 ht.bdo = 1.
@@ -877,18 +814,15 @@ ht.bst = 0.
 ht.bsea = 0.
 
 ht.aup_fix = True
-ht.ado_fix = True
+ht.ado_fix = False
 
 ht.bup_fix = False
 ht.bdo_fix = False
 ht.bst_fix = True
 ht.bsea_fix = True
 ht.coef=0.27
+###################_____________
 
-
-#ft.fit()
-
-###
 ht2.mdl_den = 'pwr_lw_star'
 ht2.mdl_num = 'gauss'
 ht2.pp =.1
@@ -899,10 +833,12 @@ ht2.mss_fix = True
 
 ht2.su2='yes'
 ht2.charm= 'yes'
+ht2.nf=4
 ht2.scale = 10.58
-ht2.cut_h2= 0
+ht2.cut_h2= 5
+ht2.correct = 'no'
 
-ht2.aup=0.
+ht2.aup=1.1
 ht2.ado=0.
 
 ht2.bup = 1.2
@@ -910,23 +846,25 @@ ht2.bdo = 1.
 ht2.bst = 0.
 ht2.bsea = 0.
 
-ht2.aup_fix = True
+ht2.aup_fix = False
 ht2.ado_fix = True
 
 ht2.bup_fix = False
 ht2.bdo_fix = False
 ht2.bst_fix = True
 ht2.bsea_fix = True
-
 ht2.coef=0.27
 
-'''
+#p5 = multiprocessing.Process(target=ht.fit)
+p6 = multiprocessing.Process(target=ht2.fit)
 
 
+#p5.start()
+p6.start()
 
 
-
-
+#p5.join()
+p6.join()
 
 
 
