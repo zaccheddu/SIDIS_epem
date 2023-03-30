@@ -25,13 +25,13 @@ import multiprocessing
 # In[2]:
 
 
-df1 = pd.read_csv('fit_parameters/to_use/fit_hadron_coef_0.27_chi_1.174__True_gk_PV17_su_no_charmno.csv')
+df1 = pd.read_csv('fit_parameters/to_use/fit_hadron_coef_0.27_chi_1.174__True_gk_PV17_su_no_charmno_correction_no.csv')
 dfs1= pd.read_csv('fit_parameters/dfs_to_use/new_gauss_su_charm_no_no_def.csv')
 
 df2 = pd.read_csv('fit_parameters/to_use/fit_hadron_coef_0.27_chi_1.259__True_gk_PV17_su_no_charmyes_correction_no.csv')
 dfs2= pd.read_csv('fit_parameters/dfs_to_use/new_gauss_su_charm_no_yes_def.csv')
 
-df3 = pd.read_csv('fit_parameters/to_use/fit_hadron_coef_0.27_chi_1.447__True_gk_PV17_su_yes_charmyes.csv')
+df3 = pd.read_csv('fit_parameters/to_use/fit_hadron_coef_0.27_chi_1.361__True_gk_PV17_su_yes_charmyes_correction_no.csv')
 dfs3= pd.read_csv('fit_parameters/dfs_to_use/new_gauss_su_charm_yes_yes_def.csv')
 
 
@@ -262,7 +262,7 @@ charm2='yes'
 su2_3= 'yes'
 charm3='yes'
 
-cut_dfs=800
+cut_dfs=500
 
 dati_lp1=grids_lp(df1,su2_1,charm1,scale,0.27,3)
 dati_lk1=grids_lk(df1,su2_1,charm1,scale,0.27,3)
@@ -379,7 +379,7 @@ def grids_lp_bands(dati_lp,df_prm,su2,charm,scale,coef,nf):
         elif su2=='yes' and charm=='yes':
             
             j=0
-            for nup, ndo, nst, nsea, ast, bup,bdo, pp in zip(df_prm.NUP,df_prm.NDO,df_prm.NST,df_prm.NSEA,df_prm.AST,df_prm.BUP,df_prm.BDO,df_prm.PP2):
+            for nup, ndo, nst, nsea,aup, ast, bup,bdo, pp in zip(df_prm.NUP,df_prm.NDO,df_prm.NST,df_prm.NSEA,df_prm.AUP,df_prm.AST,df_prm.BUP,df_prm.BDO,df_prm.PP2):
 
                 f_prm=arange(0.,18.,1.)
                 f_prm[0] = nup
@@ -389,8 +389,8 @@ def grids_lp_bands(dati_lp,df_prm,su2,charm,scale,coef,nf):
                 f_prm[4] = nsea #par[0]      #dob
                 f_prm[5] = ndo # par[0]      #stb
                 #¯¯¯¯¯¯
-                f_prm[6] = 0 #par[0]      #aup
-                f_prm[7] = 0 #par[0]      #ado
+                f_prm[6] = aup #par[0]      #aup
+                f_prm[7] = aup #par[0]      #ado
                 f_prm[8] = ast  # par[0]      #ast
                 f_prm[9] = 0# par[0]      #aupb
                 f_prm[10] = 0 #par[0]      #adob
@@ -532,7 +532,7 @@ def grids_lk_bands(dati_lk,df_prm,su2,charm,scale,coef,nf):
         elif su2=='yes' and charm=='yes':
             
             j=0
-            for nup, ndo, nst, nsea, ast, bup,bdo, pp in zip(df_prm.NUP,df_prm.NDO,df_prm.NST,df_prm.NSEA,df_prm.AST,  df_prm.BUP,df_prm.BDO,df_prm.PP2):
+            for nup, ndo, nst, nsea, aup, ast, bup,bdo, pp in zip(df_prm.NUP,df_prm.NDO,df_prm.NST,df_prm.NSEA,df_prm.AUP,df_prm.AST,  df_prm.BUP,df_prm.BDO,df_prm.PP2):
 
                 f_prm=arange(0.,18.,1.)
                 f_prm[0] = nup
@@ -542,8 +542,8 @@ def grids_lk_bands(dati_lk,df_prm,su2,charm,scale,coef,nf):
                 f_prm[4] = nsea #par[0]      #dob
                 f_prm[5] = ndo # par[0]      #stb
                 #¯¯¯¯¯¯
-                f_prm[6] = 0 #par[0]      #aup
-                f_prm[7] = 0 #par[0]      #ado
+                f_prm[6] = aup #par[0]      #aup
+                f_prm[7] = aup #par[0]      #ado
                 f_prm[8] = ast  # par[0]      #ast
                 f_prm[9] = 0# par[0]      #aupb
                 f_prm[10] = 0 #par[0]      #adob

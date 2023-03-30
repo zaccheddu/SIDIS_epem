@@ -20,7 +20,7 @@ class least_sq:
 		self.data_cut_thr = data_cut_thr
 		
 
-		self.coef = 0.25
+		self.coef = 0.27
 
 
 		self.unp_wd = 0.2
