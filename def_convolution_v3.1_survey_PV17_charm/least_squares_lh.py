@@ -64,10 +64,28 @@ class least_sq:
 			dati_lh2=dati_lh2.loc[~(dati_lh2['z1']>0.5) ]
 		#
 		#PIONS
+		elif data_cut=='pions_lambda':
+			unpol = pd.read_csv('unpol_dfs/full.csv')
+			dati_lh2=pd.read_csv("exp_data/lambda_had_global.dat", delimiter=r"\s+", header=0, engine='python')
+			dati_lh2=dati_lh2.loc[(dati_lh2['h2']==100)|(dati_lh2['h2']==105)]
+			unpol=unpol.loc[(unpol['h2']==100)|(unpol['h2']==105)]
+			dati_lh2=dati_lh2.loc[(dati_lh2['h1']==300)]
+			unpol=unpol.loc[(unpol['h1']==300)]
+
+		elif data_cut=='pions_lambda_cut':
+			unpol = pd.read_csv('unpol_dfs/full.csv')
+			unpol = unpol.loc[~(unpol['z2']>0.5)]
+			dati_lh2=pd.read_csv("exp_data/lambda_had_global.dat", delimiter=r"\s+", header=0, engine='python')
+			dati_lh2=dati_lh2.loc[~(dati_lh2['z2']>0.5) ]
+			dati_lh2=dati_lh2.loc[(dati_lh2['h2']==100)|(dati_lh2['h2']==105)]
+			unpol=unpol.loc[(unpol['h2']==100)|(unpol['h2']==105)]
+			dati_lh2=dati_lh2.loc[(dati_lh2['h1']==300)]
+			unpol=unpol.loc[(unpol['h1']==300)]
+
 		elif data_cut=='pions':
 			unpol = pd.read_csv('unpol_dfs/full.csv')
 			dati_lh2=pd.read_csv("exp_data/lambda_had_global.dat", delimiter=r"\s+", header=0, engine='python')
-			dati_lh2=dati_lh2.loc[(dati_lh2['h2']==100)|(unpol['h2']==105)]
+			dati_lh2=dati_lh2.loc[(dati_lh2['h2']==100)|(dati_lh2['h2']==105)]
 			unpol=unpol.loc[(unpol['h2']==100)|(unpol['h2']==105)]
 
 		elif data_cut=='pions_cut':
@@ -75,7 +93,7 @@ class least_sq:
 			unpol = unpol.loc[~(unpol['z2']>0.5)]
 			dati_lh2=pd.read_csv("exp_data/lambda_had_global.dat", delimiter=r"\s+", header=0, engine='python')
 			dati_lh2=dati_lh2.loc[~(dati_lh2['z2']>0.5) ]
-			dati_lh2=dati_lh2.loc[(dati_lh2['h2']==100)|(unpol['h2']==105)]
+			dati_lh2=dati_lh2.loc[(dati_lh2['h2']==100)|(dati_lh2['h2']==105)]
 			unpol=unpol.loc[(unpol['h2']==100)|(unpol['h2']==105)]
 
 		elif data_cut=='pions+':
@@ -91,6 +109,21 @@ class least_sq:
 			dati_lh2=dati_lh2.loc[~(dati_lh2['z2']>0.5) ]
 			dati_lh2=dati_lh2.loc[(dati_lh2['h2']==100)]
 			unpol=unpol.loc[(unpol['h2']==100)]
+		##__________________________________________________
+		elif data_cut=='pions+_lambda':
+			unpol = pd.read_csv('unpol_dfs/full.csv')
+			dati_lh2=pd.read_csv("exp_data/lambda_had_global.dat", delimiter=r"\s+", header=0, engine='python')
+			dati_lh2=dati_lh2.loc[(dati_lh2['h1']==300)&(dati_lh2['h2']==100)]
+			unpol=unpol.loc[(unpol['h1']==300)&(unpol['h2']==100)]
+
+		elif data_cut=='pions+_lambda_cut':
+			unpol = pd.read_csv('unpol_dfs/full.csv')
+			unpol = unpol.loc[~(unpol['z2']>0.5)]
+			dati_lh2=pd.read_csv("exp_data/lambda_had_global.dat", delimiter=r"\s+", header=0, engine='python')
+			dati_lh2=dati_lh2.loc[~(dati_lh2['z2']>0.5) ]
+			dati_lh2=dati_lh2.loc[(dati_lh2['h1']==300)&(dati_lh2['h2']==100)]
+			unpol=unpol.loc[(unpol['h1']==300)&(unpol['h2']==100)]
+		##__________________________________________________	
 		elif data_cut=='pions-':
 			unpol = pd.read_csv('unpol_dfs/full.csv')
 			dati_lh2=pd.read_csv("exp_data/lambda_had_global.dat", delimiter=r"\s+", header=0, engine='python')
@@ -103,22 +136,52 @@ class least_sq:
 			dati_lh2=dati_lh2.loc[~(dati_lh2['z2']>0.5) ]
 			dati_lh2=dati_lh2.loc[(dati_lh2['h2']==105)]
 			unpol=unpol.loc[(unpol['h2']==105)]
-#			
+#		##__________________________________________________	
+		elif data_cut=='pions-_lambda':
+			unpol = pd.read_csv('unpol_dfs/full.csv')
+			dati_lh2=pd.read_csv("exp_data/lambda_had_global.dat", delimiter=r"\s+", header=0, engine='python')
+			dati_lh2=dati_lh2.loc[(dati_lh2['h1']==300)&(dati_lh2['h2']==105)]
+			unpol=unpol.loc[(unpol['h1']==300)&(unpol['h2']==105)]
+		elif data_cut=='pions-_lambda_cut':
+			unpol = pd.read_csv('unpol_dfs/full.csv')
+			unpol = unpol.loc[~(unpol['z2']>0.5)]
+			dati_lh2=pd.read_csv("exp_data/lambda_had_global.dat", delimiter=r"\s+", header=0, engine='python')
+			dati_lh2=dati_lh2.loc[~(dati_lh2['z2']>0.5) ]
+			dati_lh2=dati_lh2.loc[(dati_lh2['h1']==300)&(dati_lh2['h2']==105)]
+			unpol=unpol.loc[(unpol['h1']==300)&(unpol['h2']==105)]
+
 #
 #
 		#KAONS
 		elif data_cut=='kaons':
 			unpol = pd.read_csv('unpol_dfs/full.csv')
 			dati_lh2=pd.read_csv("exp_data/lambda_had_global.dat", delimiter=r"\s+", header=0, engine='python')
-			dati_lh2=dati_lh2.loc[(dati_lh2['h2']==200)|(unpol['h2']==205)]
+			dati_lh2=dati_lh2.loc[(dati_lh2['h2']==200)|(dati_lh2['h2']==205)]
 			unpol=unpol.loc[(unpol['h2']==200)|(unpol['h2']==205)]
 		elif data_cut=='kaons_cut':
 			unpol = pd.read_csv('unpol_dfs/full.csv')
 			unpol = unpol.loc[~(unpol['z2']>0.5)]
 			dati_lh2=pd.read_csv("exp_data/lambda_had_global.dat", delimiter=r"\s+", header=0, engine='python')
 			dati_lh2=dati_lh2.loc[~(dati_lh2['z2']>0.5) ]
-			dati_lh2=dati_lh2.loc[(dati_lh2['h2']==200)|(unpol['h2']==205)]
+			dati_lh2=dati_lh2.loc[(dati_lh2['h2']==200)|(dati_lh2['h2']==205)]
 			unpol=unpol.loc[(unpol['h2']==200)|(unpol['h2']==205)]
+		elif data_cut=='kaons_lambda':
+			unpol = pd.read_csv('unpol_dfs/full.csv')
+			dati_lh2=pd.read_csv("exp_data/lambda_had_global.dat", delimiter=r"\s+", header=0, engine='python')
+			dati_lh2=dati_lh2.loc[(dati_lh2['h2']==200)|(dati_lh2['h2']==205)]
+			unpol=unpol.loc[(unpol['h2']==200)|(unpol['h2']==205)]
+			dati_lh2=dati_lh2.loc[(dati_lh2['h1']==300)]
+			unpol=unpol.loc[(unpol['h1']==300)]
+
+		elif data_cut=='kaons_lambda_cut':
+			unpol = pd.read_csv('unpol_dfs/full.csv')
+			unpol = unpol.loc[~(unpol['z2']>0.5)]
+			dati_lh2=pd.read_csv("exp_data/lambda_had_global.dat", delimiter=r"\s+", header=0, engine='python')
+			dati_lh2=dati_lh2.loc[~(dati_lh2['z2']>0.5) ]
+			dati_lh2=dati_lh2.loc[(dati_lh2['h2']==200)|(dati_lh2['h2']==205)]
+			unpol=unpol.loc[(unpol['h2']==200)|(unpol['h2']==205)]
+			dati_lh2=dati_lh2.loc[(dati_lh2['h1']==300)]
+			unpol=unpol.loc[(unpol['h1']==300)]
 		
 		elif data_cut=='kaons+':
 			unpol = pd.read_csv('unpol_dfs/full.csv')
@@ -132,6 +195,20 @@ class least_sq:
 			dati_lh2=dati_lh2.loc[~(dati_lh2['z2']>0.5) ]
 			dati_lh2=dati_lh2.loc[(dati_lh2['h2']==200)]
 			unpol=unpol.loc[(unpol['h2']==200)]
+			
+		elif data_cut=='kaons+_lambda':
+			unpol = pd.read_csv('unpol_dfs/full.csv')
+			dati_lh2=pd.read_csv("exp_data/lambda_had_global.dat", delimiter=r"\s+", header=0, engine='python')
+			dati_lh2=dati_lh2.loc[(dati_lh2['h1']==300)&(dati_lh2['h2']==200)]
+			unpol=unpol.loc[(unpol['h1']==300)&(unpol['h2']==200)]
+		elif data_cut=='kaons+_lambda_cut':
+			unpol = pd.read_csv('unpol_dfs/full.csv')
+			unpol = unpol.loc[~(unpol['z2']>0.5)]
+			dati_lh2=pd.read_csv("exp_data/lambda_had_global.dat", delimiter=r"\s+", header=0, engine='python')
+			dati_lh2=dati_lh2.loc[~(dati_lh2['z2']>0.5) ]
+			dati_lh2=dati_lh2.loc[(dati_lh2['h1']==300)&(dati_lh2['h2']==200)]
+			unpol=unpol.loc[(unpol['h1']==300)&(unpol['h2']==200)]
+			
 		elif data_cut=='kaons-':
 			unpol = pd.read_csv('unpol_dfs/full.csv')
 			dati_lh2=pd.read_csv("exp_data/lambda_had_global.dat", delimiter=r"\s+", header=0, engine='python')
@@ -144,6 +221,19 @@ class least_sq:
 			dati_lh2=dati_lh2.loc[~(dati_lh2['z2']>0.5) ]
 			dati_lh2=dati_lh2.loc[(dati_lh2['h2']==205)]
 			unpol=unpol.loc[(unpol['h2']==205)]
+
+		elif data_cut=='kaons-_lambda':
+			unpol = pd.read_csv('unpol_dfs/full.csv')
+			dati_lh2=pd.read_csv("exp_data/lambda_had_global.dat", delimiter=r"\s+", header=0, engine='python')
+			dati_lh2=dati_lh2.loc[(dati_lh2['h1']==300)&(dati_lh2['h2']==205)]
+			unpol=unpol.loc[(unpol['h1']==300)&(unpol['h2']==205)]
+		elif data_cut=='kaons-_lambda_cut':
+			unpol = pd.read_csv('unpol_dfs/full.csv')
+			unpol = unpol.loc[~(unpol['z2']>0.5)]
+			dati_lh2=pd.read_csv("exp_data/lambda_had_global.dat", delimiter=r"\s+", header=0, engine='python')
+			dati_lh2=dati_lh2.loc[~(dati_lh2['z2']>0.5) ]
+			dati_lh2=dati_lh2.loc[(dati_lh2['h1']==300)&(dati_lh2['h2']==205)]
+			unpol=unpol.loc[(unpol['h1']==300)&(unpol['h2']==205)]
 
 
 

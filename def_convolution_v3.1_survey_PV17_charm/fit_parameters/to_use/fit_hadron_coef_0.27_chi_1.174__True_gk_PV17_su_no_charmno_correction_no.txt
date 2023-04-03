@@ -80,8 +80,19 @@ ________________________
 chi_square = 103.31050121465523
 number parameters = 8
 ________________________
-chi_square pions = 41.81973512211103 ;  points = 48
-chi_square kaons = 61.490766092544234 ;  points = 48
+chi_square pions_cut = 41.82 ;  points = 48.0
+chi_square pions-_cut = 15.46 ;  points = 24.0
+chi_square pions+_cut = 26.36 ;  points = 24.0
+chi_square pions_lambda_cut = 17.76 ;  points = 24.0
+chi_square pions+_lambda_cut = 11.66 ;  points = 12.0
+chi_square pions-_lambda_cut = 6.1 ;  points = 12.0
+________________________
+chi_square kaons_cut = 61.49 ;  points = 48.0
+chi_square kaons-_cut = 24.61 ;  points = 24.0
+chi_square kaons+_cut = 36.88 ;  points = 24.0
+chi_square kaons_lambda_cut = 31.95 ;  points = 24.0
+chi_square kaons+_lambda_cut = 25.77 ;  points = 12.0
+chi_square kaons-_lambda_cut = 6.18 ;  points = 12.0
 ________________________
 SU2 simmetry = no
 Charm = no

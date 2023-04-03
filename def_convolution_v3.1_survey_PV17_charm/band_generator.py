@@ -253,7 +253,7 @@ def grids_lk(df,su2,charm,scale,coef,nf):
 # In[6]:
 
 
-scale = 12.58
+scale = 8.48
 print(scale)
 su2_1= 'no'
 charm1='no'

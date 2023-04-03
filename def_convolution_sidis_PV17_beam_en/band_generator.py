@@ -38,9 +38,9 @@ dfs1 = pd.read_csv('fit_parameters/dfs_/new_gauss_su_charm_no_no_def.csv')
 dfs2 = pd.read_csv('fit_parameters/dfs_/new_gauss_su_charm_no_yes_def.csv')
 dfs3 = pd.read_csv('fit_parameters/dfs_/new_gauss_su_charm_yes_yes_def.csv')
 
-df1 = pd.read_csv('fit_parameters/dfs_/fit_hadron_coef_0.27_chi_1.174__True_gk_PV17_su_no_charmno.csv')
+df1 = pd.read_csv('fit_parameters/dfs_/fit_hadron_coef_0.27_chi_1.174__True_gk_PV17_su_no_charmno_correction_no.csv')
 df2 = pd.read_csv('fit_parameters/dfs_/fit_hadron_coef_0.27_chi_1.259__True_gk_PV17_su_no_charmyes_correction_no.csv')
-df3 = pd.read_csv('fit_parameters/dfs_/fit_hadron_coef_0.27_chi_1.447__True_gk_PV17_su_yes_charmyes.csv')
+df3 = pd.read_csv('fit_parameters/dfs_/fit_hadron_coef_0.27_chi_1.361__True_gk_PV17_su_yes_charmyes_correction_no.csv')
 
 
 # In[6]:
