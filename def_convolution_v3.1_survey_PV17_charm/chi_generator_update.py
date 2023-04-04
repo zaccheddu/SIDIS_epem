@@ -323,7 +323,7 @@ def bands_gauss_2(su2_charm,coef,num):
 #bands_pwrlw()
 
 
-num=5		
+num=7		
 p1 = multiprocessing.Process(target=bands_gauss_2,args=('no_no',0.27,num))
 p2 = multiprocessing.Process(target=bands_gauss_2,args=('no_yes',0.27,num))
 p3 = multiprocessing.Process(target=bands_gauss_2,args=('yes_yes',0.27,num))
