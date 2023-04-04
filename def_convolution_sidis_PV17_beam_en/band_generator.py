@@ -401,7 +401,7 @@ def grids_lp_bands(df_prm,df,su2,charm,sep,IC,pdf_name):
         elif su2=='yes' and charm=='yes':
 
             j=0
-            for nup, ndo, nst, nsea, ast, bup,bdo, pp in zip(df_prm.NUP,df_prm.NDO,df_prm.NST,df_prm.NSEA,df_prm.AST,df_prm.BUP,df_prm.BDO,df_prm.PP2):
+            for nup, ndo, nst, nsea, aup, ast, bup,bdo, pp in zip(df_prm.NUP,df_prm.NDO,df_prm.NST,df_prm.NSEA,df_prm.AUP,df_prm.AST,df_prm.BUP,df_prm.BDO,df_prm.PP2):
 
                 f_prm=arange(0.,18.,1.)
                 f_prm[0] = nup
@@ -411,8 +411,8 @@ def grids_lp_bands(df_prm,df,su2,charm,sep,IC,pdf_name):
                 f_prm[4] = nsea #par[0]      #dob
                 f_prm[5] = ndo # par[0]      #stb
                 #¯¯¯¯¯¯
-                f_prm[6] = 0 #par[0]      #aup
-                f_prm[7] = 0 #par[0]      #ado
+                f_prm[6] = aup #par[0]      #aup
+                f_prm[7] = aup #par[0]      #ado
                 f_prm[8] = ast  # par[0]      #ast
                 f_prm[9] = 0# par[0]      #aupb
                 f_prm[10] = 0 #par[0]      #adob
@@ -557,7 +557,7 @@ def grids_ln_bands(df_prm,df,su2,charm,sep,IC,pdf_name):
         elif su2=='yes' and charm=='yes':
 
             j=0
-            for nup, ndo, nst, nsea, ast, bup,bdo, pp in zip(df_prm.NUP,df_prm.NDO,df_prm.NST,df_prm.NSEA,df_prm.AST,df_prm.BUP,df_prm.BDO,df_prm.PP2):
+            for nup, ndo, nst, nsea, aup, ast, bup,bdo, pp in zip(df_prm.NUP,df_prm.NDO,df_prm.NST,df_prm.NSEA,df_prm.AUP,df_prm.AST,df_prm.BUP,df_prm.BDO,df_prm.PP2):
 
                 f_prm=arange(0.,18.,1.)
                 f_prm[0] = nup
@@ -567,8 +567,8 @@ def grids_ln_bands(df_prm,df,su2,charm,sep,IC,pdf_name):
                 f_prm[4] = nsea #par[0]      #dob
                 f_prm[5] = ndo # par[0]      #stb
                 #¯¯¯¯¯¯
-                f_prm[6] = 0 #par[0]      #aup
-                f_prm[7] = 0 #par[0]      #ado
+                f_prm[6] = aup #par[0]      #aup
+                f_prm[7] = aup #par[0]      #ado
                 f_prm[8] = ast  # par[0]      #ast
                 f_prm[9] = 0# par[0]      #aupb
                 f_prm[10] = 0 #par[0]      #adob
