@@ -371,7 +371,7 @@ class least_sq:
 		self.dataframe = unpol
 		self.nf=3 
 		self.correct='no'
-	def least_squares_lh(self,NUP,NDO,NST,NSEA,AUP,ADO,AST,ASEA,BUP,BDO,BST,BSEA,PP,MSS):  #chi-square lambda-had
+	def least_squares_lh(self,NUP,NDO,NST,NUPB,NDOB,NSTB,AUP,ADO,AST,AUPB,ADOB,ASTB,BUP,BDO,BST,BUPB,BDOB,BSTB,PP,MSS):  #chi-square lambda-had
 		#print(NUP)
 		#print(self.unp_cr)
 
@@ -390,55 +390,8 @@ class least_sq:
 		#NUP.astype(float)
 
 		f_prm=arange(0.,18.,1.)
-		if self.su2=='yes':
-			f_prm[0] = NUP # par[0]   #up
-			f_prm[1] = NUP #par[0]  #do
-			f_prm[2] = NST #par[0]      #st
-			f_prm[3] = NSEA #par[0]      #upb
-			f_prm[4] = NSEA #par[0]      #dob
-			f_prm[5] = NDO # par[0]      #stb
-		#¯¯¯¯¯¯
-			f_prm[6] = AUP #par[0]      #aup
-			f_prm[7] = AUP #par[0]      #ado
-			f_prm[8] = AST # par[0]      #ast
-			f_prm[9] = ASEA# par[0]      #aupb
-			f_prm[10] =ASEA #par[0]      #adob
-			f_prm[11] = ADO #par[0]      #astb
-		#¯#¯¯¯¯¯¯¯
-			f_prm[12] = BUP #par[0]      #bup
-			f_prm[13] = BUP #par[0]      #bdo
-			f_prm[14] = BST # par[0]      #bst
-			f_prm[15] = BSEA #par[0]      #bupb
-			f_prm[16] = BSEA #par[0]      #bdob
-			f_prm[17] = BDO # par[0]      #bstb
-			pt_pp=PP	
-
-		elif self.su2=='no':
-
-			f_prm[0] = NUP # par[0]   #up
-			f_prm[1] = NDO #par[0]  #do
-			f_prm[2] = NST #par[0]      #st
-			f_prm[3] = NSEA #par[0]      #upb
-			f_prm[4] = f_prm[3] #par[0]      #dob
-			f_prm[5] = f_prm[3] # par[0]      #stb
-		#¯¯¯¯¯¯
-			f_prm[6] = AUP #par[0]      #aup
-			f_prm[7] = ADO #par[0]      #ado
-			f_prm[8] = AST # par[0]      #ast
-			f_prm[9] = ASEA# par[0]      #aupb
-			f_prm[10] = f_prm[9] #par[0]      #adob
-			f_prm[11] = f_prm[9] #par[0]      #astb
-		#¯#¯¯¯¯¯¯¯
-			f_prm[12] = BUP #par[0]      #bup
-			f_prm[13] = BDO #par[0]      #bdo
-			f_prm[14] = BST # par[0]      #bst
-			f_prm[15] = BSEA #par[0]      #bupb
-			f_prm[16] = f_prm[15] #par[0]      #bdob
-			f_prm[17] = f_prm[15] # par[0]      #bstb
-			pt_pp=PP	
-			
-		'''	
-		elif self.su2=='mix':
+	
+		if self.su2=='mix':
 			f_prm[0] = NUP # par[0]   #up
 			f_prm[1] = NDO #par[0]  #do
 			f_prm[2] = NST #par[0]      #st
@@ -460,7 +413,6 @@ class least_sq:
 			f_prm[16] = BDOB #par[0]      #bdob
 			f_prm[17] = BSTB # par[0]      #bstb
 			pt_pp=PP	
-		'''
 			
 		pt_pl1=self.unp_wd
 		pt_pl2=0.2
