@@ -554,7 +554,7 @@ class fitter:
 		values = np.append(values,chi_dof)
 
 		df.loc[len(df), :] = values
-		df.to_csv(r'fit_parameters/fit_'+str(self.type)+'_coef_'+ str(self.coef)+'_chi_'+str(chi_dof)+'__'+str(fit6.valid)+'_gk_'+str(self.g_k_2h)+'_su_'+str(self.su2)+'_charm'+str(self.charm)\
+		df.to_csv(r'fit_parameters/confirm/fit_'+str(self.type)+'_coef_'+ str(self.coef)+'_chi_'+str(chi_dof)+'__'+str(fit6.valid)+'_gk_'+str(self.g_k_2h)+'_su_'+str(self.su2)+'_charm'+str(self.charm)\
 			+'_correction_'+str(self.correct) +'.csv',index=False)
 
 		if self.cut_h2==0:
@@ -566,7 +566,7 @@ class fitter:
 			cut_h2s_pion=['pions_cut','pions-_cut','pions+_cut','pions_lambda_cut','pions+_lambda_cut','pions-_lambda_cut']
 		chi_pions=np.array([])
 		pnt=np.array([])
-		prm=pd.read_csv(r'fit_parameters/fit_'+str(self.type)+'_coef_'+ str(self.coef)+'_chi_'+str(chi_dof)+'__'+str(fit6.valid)+'_gk_'+str(self.g_k_2h)+'_su_'+str(self.su2)+'_charm'+str(self.charm)\
+		prm=pd.read_csv(r'fit_parameters/confirm/fit_'+str(self.type)+'_coef_'+ str(self.coef)+'_chi_'+str(chi_dof)+'__'+str(fit6.valid)+'_gk_'+str(self.g_k_2h)+'_su_'+str(self.su2)+'_charm'+str(self.charm)\
 				+'_correction_'+str(self.correct) +'.csv')
 				
 		for ct_h2 in cut_h2s_pion:
@@ -641,7 +641,7 @@ class fitter:
 		
 
 			chi_kaons=np.append(chi_kaons,np.round(chi_kaon,2))
-		sourceFile = open(r'fit_parameters/fit_'+str(self.type)+'_coef_'+ str(self.coef)+'_chi_'+str(chi_dof)+'__'+str(fit6.valid)+'_gk_'+str(self.g_k_2h)+'_su_'+str(self.su2)+'_charm'+str(self.charm) \
+		sourceFile = open(r'fit_parameters/confirm/fit_'+str(self.type)+'_coef_'+ str(self.coef)+'_chi_'+str(chi_dof)+'__'+str(fit6.valid)+'_gk_'+str(self.g_k_2h)+'_su_'+str(self.su2)+'_charm'+str(self.charm) \
 			+'_correction_'+str(self.correct)+'.txt', 'w')
 		print(fit6.init_params, file = sourceFile)
 		print(fit6, file = sourceFile)
@@ -707,6 +707,9 @@ class fitter:
 ft,ft2,gt,gt2,ht,ht2 = fitter('hadron'),fitter('hadron'),fitter('hadron'),fitter('hadron'),fitter('hadron'),fitter('hadron')
 
 #print(ft.g_k_2h)
+
+
+##### 1 SCENARIO
 ft.mdl_den = 'pwr_lw_star'
 ft.mdl_num = 'gauss'
 ft.pp = 0.1
@@ -726,7 +729,7 @@ ft.correct = 'no'
 ft.tollerance = 20.
 #ft.fit()
 
-###
+### 2 SCENARIO
 ft2.mdl_den = 'pwr_lw_star'
 ft2.mdl_num = 'gauss'
 ft2.pp = .1
@@ -748,7 +751,7 @@ ft2.correct = 'no'
 #ft2.bsea_fix = True
 ft2.tollerance = 20.
 
-
+########## 3 SCENARIO
 ht.mdl_den = 'pwr_lw_star'
 ht.mdl_num = 'gauss'
 ht.pp =.1
@@ -764,7 +767,8 @@ ht.scale = 10.58
 ht.cut_h2= 5
 ht.correct = 'no'
 
-ht.aup=0.
+
+ht.aup=1.1
 ht.ado=0.
 
 ht.bup = 1.2
@@ -772,7 +776,7 @@ ht.bdo = 1.
 ht.bst = 0.
 ht.bsea = 0.
 
-ht.aup_fix = True
+ht.aup_fix = False
 ht.ado_fix = True
 
 ht.bup_fix = False
@@ -780,30 +784,31 @@ ht.bdo_fix = False
 ht.bst_fix = True
 ht.bsea_fix = True
 ht.coef=0.27
+ht.tollerance = 200.
 
 
-#p1 = multiprocessing.Process(target=ft.fit)
-#p2 = multiprocessing.Process(target=ft2.fit)
+p1 = multiprocessing.Process(target=ft.fit)
+p2 = multiprocessing.Process(target=ft2.fit)
 #p3 = multiprocessing.Process(target=gt.fit)
 #p4 = multiprocessing.Process(target=gt2.fit)
-#p5 = multiprocessing.Process(target=ht.fit)
+p5 = multiprocessing.Process(target=ht.fit)
 #p6 = multiprocessing.Process(target=ht2.fit)
 
 
-#p1.start()
-#p2.start()
+p1.start()
+p2.start()
 #p3.start()
 #p4.start()
-#p5.start()
+p5.start()
 #p6.start()
 
 
 
-#p1.join()
-#p2.join()
+p1.join()
+p2.join()
 #p3.join()
 #p4.join()
-#p5.join()
+p5.join()
 #p6.join()
 
 
@@ -878,24 +883,24 @@ ht2.tollerance = 200.
 
 
 #p5 = multiprocessing.Process(target=ht.fit)
-p6 = multiprocessing.Process(target=ht2.fit)
+#p6 = multiprocessing.Process(target=ht2.fit)
 
-p1 = multiprocessing.Process(target=ft.fit)
-p2 = multiprocessing.Process(target=ft2.fit)
+#p1 = multiprocessing.Process(target=ft.fit)
+#p2 = multiprocessing.Process(target=ft2.fit)
 
 
 #p5.start()
-p6.start()
-p1.start()
-p2.start()
+#p6.start()
+#p1.start()
+#p2.start()
 
 
 
-p1.join()
-p2.join()
+#p1.join()
+#p2.join()
 
 #p5.join()
-p6.join()
+#p6.join()
 
 
 

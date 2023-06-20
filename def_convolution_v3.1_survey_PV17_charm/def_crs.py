@@ -70,10 +70,10 @@ class cr_sec:
 			dstb1=dstb1*fact_bar
 
 			dch1=dss1.D1(hadron1,"c",zp1,q)
-			dch1=dch1*fact
+			dch1=dch1/2#*fact
 
 			dchb1=dss1.D1(hadron1,"cb",zp1,q)
-			dchb1=dchb1*fact_bar
+			dchb1=dchb1/2#*fact_bar
 			
 			
 		
@@ -104,10 +104,10 @@ class cr_sec:
 			dstb1=dstb1*fact_bar
 
 			dch1=dss1.D1(hadron1,"c",zp1,q)
-			dch1=dch1*fact
+			dch1=dch1/2#*fact
 		#
 			dchb1=dss1.D1(hadron1,"cb",zp1,q)
-			dchb1=dchb1*fact_bar
+			dchb1=dchb1/2#*fact_bar
 
 
 	
