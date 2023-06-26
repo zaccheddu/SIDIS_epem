@@ -135,7 +135,10 @@ class polarization :
 
 		def fnc1(btt):
 
-			res = btt*fnt.cross_sec2_polda(had1,had2,z1,z2,scl.mu_b(btt),param)
+			res, UP, DO, ST, UPb, DOb, STb = fnt.cross_sec2_polda(had1,had2,z1,z2,scl.mu_b(btt),param)
+
+			res=btt*res
+
 
 			if self.mdl_num == 'gauss' :res = res*mdl1.MD_gauss(btt,z1,wdt_pol)# h1 model
 			elif self.mdl_num == 'pwr_lw' : res = res*mdl1.MD(btt,wdt_pol,mss)
@@ -143,7 +146,7 @@ class polarization :
 			elif self.mdl_num == 'pwr_lw_star' : res = res*mdl1.MD_bstar(btt,wdt_pol,z1,mss)
 			elif self.mdl_num == 'pwr_lw_ratio' : res = res*mdl1.MD_bstar_ratio(btt,wdt_pol,z1,mss)
 
-			#res = res*mdl2.MD_gauss(btt,z2,wdt2_unp)
+			#res = res*mdl2.MD_gauss(btt,z2,wdt2_unp) 
 			res = res*mdl2.MD_pv17(btt,z2) #PV17
 			#res = res*mdl2.MD(btt,2.,1.)
 
@@ -175,8 +178,9 @@ class polarization :
 
 		def fnc2(btt):
 
-			res = btt*fnt.cross_sec2_polda(had1,had2,z1,z2,scl.mu_b(btt),param)
-
+			res, UP, DO, ST, UPb, DOb, STb = fnt.cross_sec2_polda(had1,had2,z1,z2,scl.mu_b(btt),param)
+			res=btt*res
+			
 			if self.mdl_num == 'gauss' :res = res*mdl1.MD_gauss(btt,z1,wdt_pol)# h1 model
 			elif self.mdl_num == 'pwr_lw' : res = res*mdl1.MD(btt,wdt_pol,mss)
 			elif self.mdl_num == 'pwr_lw_pt' : res = res*mdl1.MD_pt(btt,wdt_pol,z1,mss)

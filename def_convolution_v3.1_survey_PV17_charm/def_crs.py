@@ -395,11 +395,20 @@ class cr_sec:
 				dch2=self.kam_ff.xfxQ(4,z2,q)/z2
 				dchb2=self.kam_ff.xfxQ(-4,z2,q)/z2	
 
-	
+		
 
 		cs2= 4/9*(dup1*dupb2 + dupb1*dup2) + 1/9*(ddo1*ddob2 + ddob1*ddo2) + 1/9*(dst1*dstb2 + dstb1*dst2)
+		
+		
+		UP = 4/9*(dup1*dupb2)
+		DO = 1/9*(ddo1*ddob2)
+		ST = 1/9*(dst1*dstb2)
+		
+		UPb = 4/9*(dupb1*dup2)
+		DOb = 1/9*(ddob1*ddo2)
+		STb = 1/9*(dstb1*dst2)
 	#
-		return cs2
+		return cs2, UP, DO, ST, UPb, DOb, STb
 
 
 
@@ -409,11 +418,21 @@ class cr_sec:
 	def ratio_pol(self,had1,had2,z1,z2,q,param):  #rapporto fra numeratore e denominatore
 
 	
-		num=self.cross_sec2_polda(had1,had2,z1,z2,q,param)
+		num, UP, DO, ST, UPb, DOb, STb=self.cross_sec2_polda(had1,had2,z1,z2,q,param)
 		den=self.cross_sec2(had1,had2,z1,z2,q)	
 
 		ratio=num/den
 		return ratio
+
+	def ratio_pol_partial(self,had1,had2,z1,z2,q,param):  #rapporto fra numeratore e denominatore e rapporti parziali
+
+	
+		num, UP, DO, ST, UPb, DOb, STb=self.cross_sec2_polda(had1,had2,z1,z2,q,param)
+		den=self.cross_sec2(had1,had2,z1,z2,q)	
+
+		ratio=num/den
+		return ratio, UP/den, DO/den, ST/den, UPb/den, DOb/den, STb/den
+
 
 	def fact_pol(self,z1,z2,pt_pl1,pt_pl2,pt_pp,q):  #fattore per le rotazioni
 
@@ -643,6 +662,8 @@ class cr_sec:
 
 
 		cs2= 4/9*(dup1 + dupb1) + 1/9*(ddo1 + ddob1) + 1/9*(dst1 + dstb1)
+		
+		
 	#
 		return cs2
 
