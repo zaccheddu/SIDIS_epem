@@ -135,7 +135,7 @@ class polarization :
 
 		def fnc1(btt):
 
-			res, UP, DO, ST, UPb, DOb, STb = fnt.cross_sec2_polda(had1,had2,z1,z2,scl.mu_b(btt),param)
+			res= fnt.cross_sec2_polda(had1,had2,z1,z2,scl.mu_b(btt),param)[0]
 
 			res=btt*res
 
@@ -178,7 +178,7 @@ class polarization :
 
 		def fnc2(btt):
 
-			res, UP, DO, ST, UPb, DOb, STb = fnt.cross_sec2_polda(had1,had2,z1,z2,scl.mu_b(btt),param)
+			res = fnt.cross_sec2_polda(had1,had2,z1,z2,scl.mu_b(btt),param)[0]
 			res=btt*res
 			
 			if self.mdl_num == 'gauss' :res = res*mdl1.MD_gauss(btt,z1,wdt_pol)# h1 model

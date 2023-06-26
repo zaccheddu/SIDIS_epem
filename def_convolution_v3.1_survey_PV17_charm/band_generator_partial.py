@@ -161,7 +161,7 @@ def grids_lp(df,su2,charm,scale,coef,nf):
 
     dati_lp['UP'] = UP
     dati_lp['DO'] = DO
-    dati_lp['ST'] = ST
+    dati_lp['ST'] = ST 
 
     dati_lp['UPb'] = UPb
     dati_lp['DOb'] = DOb

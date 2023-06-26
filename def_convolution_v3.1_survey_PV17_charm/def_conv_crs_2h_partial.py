@@ -135,15 +135,7 @@ class polarization :
 
 		def fnc1(btt):
 
-			tot, UP, DO, ST, UPb, DOb, STb = fnt.cross_sec2_polda(had1,had2,z1,z2,scl.mu_b(btt),param)
-			res=btt*tot
-
-			UP=btt*UP
-			DO=btt*DO
-			ST=btt*ST
-			UPb=btt*UPb
-			DOb=btt*DOb
-			STb=btt*STb
+			res =btt*fnt.cross_sec2_polda(had1,had2,z1,z2,scl.mu_b(btt),param)[0]
 
 			if self.mdl_num == 'gauss' :res = res*mdl1.MD_gauss(btt,z1,wdt_pol)# h1 model
 			res = res*mdl2.MD_pv17(btt,z2) #PV17
@@ -152,20 +144,13 @@ class polarization :
 			if self.g_k == 'PV17': res = res*scl.analytic_sudakov(btt)*scl.g_K_bac_lgm(btt,had2,z1,z2)
 
 
-			UP=btt*UP*mdl1.MD_gauss(btt,z1,wdt_pol)*mdl2.MD_pv17(btt,z2)*special.struve(0,btt*qT_max)*scl.analytic_sudakov(btt)*scl.g_K_bac_lgm(btt,had2,z1,z2)
-			DO=btt*DO*mdl1.MD_gauss(btt,z1,wdt_pol)*mdl2.MD_pv17(btt,z2)*special.struve(0,btt*qT_max)*scl.analytic_sudakov(btt)*scl.g_K_bac_lgm(btt,had2,z1,z2)
-			ST=btt*ST*mdl1.MD_gauss(btt,z1,wdt_pol)*mdl2.MD_pv17(btt,z2)*special.struve(0,btt*qT_max)*scl.analytic_sudakov(btt)*scl.g_K_bac_lgm(btt,had2,z1,z2)
-			UPb=btt*UPb*mdl1.MD_gauss(btt,z1,wdt_pol)*mdl2.MD_pv17(btt,z2)*special.struve(0,btt*qT_max)*scl.analytic_sudakov(btt)*scl.g_K_bac_lgm(btt,had2,z1,z2)
-			DOb=btt*DOb*mdl1.MD_gauss(btt,z1,wdt_pol)*mdl2.MD_pv17(btt,z2)*special.struve(0,btt*qT_max)*scl.analytic_sudakov(btt)*scl.g_K_bac_lgm(btt,had2,z1,z2)
-			STb=btt*STb*mdl1.MD_gauss(btt,z1,wdt_pol)*mdl2.MD_pv17(btt,z2)*special.struve(0,btt*qT_max)*scl.analytic_sudakov(btt)*scl.g_K_bac_lgm(btt,had2,z1,z2)
 
 			#print(res)
-			return res, UP, DO, ST, UPb, DOb, STb 		
+			return res		
 
 		def fnc2(btt):
 
-			tot, UP, DO, ST, UPb, DOb, STb = fnt.cross_sec2_polda(had1,had2,z1,z2,scl.mu_b(btt),param)
-			res=btt*tot
+			res= btt*fnt.cross_sec2_polda(had1,had2,z1,z2,scl.mu_b(btt),param)[0]
 			
 			if self.mdl_num == 'gauss' :res = res*mdl1.MD_gauss(btt,z1,wdt_pol)# h1 model
 			res = res*mdl2.MD_pv17(btt,z2) #PV17
@@ -173,21 +158,12 @@ class polarization :
 			### PV17
 			if self.g_k == 'PV17': res = res*scl.analytic_sudakov(btt)*scl.g_K_bac_lgm(btt,had2,z1,z2)
 
-			UP=btt*UP*mdl1.MD_gauss(btt,z1,wdt_pol)*mdl2.MD_pv17(btt,z2)*special.struve(1,btt*qT_max)*scl.analytic_sudakov(btt)*scl.g_K_bac_lgm(btt,had2,z1,z2)
-			DO=btt*DO*mdl1.MD_gauss(btt,z1,wdt_pol)*mdl2.MD_pv17(btt,z2)*special.struve(1,btt*qT_max)*scl.analytic_sudakov(btt)*scl.g_K_bac_lgm(btt,had2,z1,z2)
-			ST=btt*ST*mdl1.MD_gauss(btt,z1,wdt_pol)*mdl2.MD_pv17(btt,z2)*special.struve(1,btt*qT_max)*scl.analytic_sudakov(btt)*scl.g_K_bac_lgm(btt,had2,z1,z2)
-			UPb=btt*UPb*mdl1.MD_gauss(btt,z1,wdt_pol)*mdl2.MD_pv17(btt,z2)*special.struve(1,btt*qT_max)*scl.analytic_sudakov(btt)*scl.g_K_bac_lgm(btt,had2,z1,z2)
-			DOb=btt*DOb*mdl1.MD_gauss(btt,z1,wdt_pol)*mdl2.MD_pv17(btt,z2)*special.struve(1,btt*qT_max)*scl.analytic_sudakov(btt)*scl.g_K_bac_lgm(btt,had2,z1,z2)
-			STb=btt*STb*mdl1.MD_gauss(btt,z1,wdt_pol)*mdl2.MD_pv17(btt,z2)*special.struve(1,btt*qT_max)*scl.analytic_sudakov(btt)*scl.g_K_bac_lgm(btt,had2,z1,z2)
 
 			
-			return res, UP, DO, ST, UPb, DOb, STb 		
-
+			return res	
 			
-		test1 = lambda bt : fnc1(bt)[0]			
-		test2 = lambda bt : fnc2(bt)[0]
-
-
+		test1 = lambda bt : fnc1(bt)		
+		test2 = lambda bt : fnc2(bt)
 		
 		#print(qT_max)
 		N=10
@@ -195,89 +171,454 @@ class polarization :
 		wfbt1 = fbt1.fbt(test1,qT_max,N)
 		wfbt1 = wfbt1*pi**2*qT_max
 
+		fbt2 = FBT(0)
+		wfbt2 = fbt2.fbt(test2,qT_max,N)
+		wfbt2 = wfbt2*pi**2*qT_max	
 
+		wfbt_pol = wfbt1 - wfbt2
+
+		return wfbt_pol
+	def up(self,had1,had2,z1,z2,param,wdt_pol,mss):
+
+		fnt = cr_sec()
+		fnt.mass = self.mass        
+		fnt.frag2 = self.frag2
+		fnt.qq=self.scale
+
+
+		mdl1 = model_bt()
+		mdl1.mass = 1.115
+		mdl1.qq = self.scale
+		mdl2 = model_bt()
+		mdl2.mass = 0.
+		mdl2.qq = self.scale
+		
+		wdt1_unp = 0.2
+		wdt2_unp = 0.2
+
+		scl = Soft(1)
+		scl.bmax = self.bmax 
+		scl.scale = self.scale
+		qT_max = self.scale*self.coef
+		scl.nf=self.nf
+
+		def fnc1(btt):
+
+			res =btt*fnt.cross_sec2_polda(had1,had2,z1,z2,scl.mu_b(btt),param)[1]
+
+			if self.mdl_num == 'gauss' :res = res*mdl1.MD_gauss(btt,z1,wdt_pol)# h1 model
+			res = res*mdl2.MD_pv17(btt,z2) #PV17
+			res = res*special.struve(0,btt*qT_max)
+			### PV17
+			if self.g_k == 'PV17': res = res*scl.analytic_sudakov(btt)*scl.g_K_bac_lgm(btt,had2,z1,z2)
+
+
+
+			#print(res)
+			return res		
+
+		def fnc2(btt):
+
+			res= btt*fnt.cross_sec2_polda(had1,had2,z1,z2,scl.mu_b(btt),param)[1]
+			
+			if self.mdl_num == 'gauss' :res = res*mdl1.MD_gauss(btt,z1,wdt_pol)# h1 model
+			res = res*mdl2.MD_pv17(btt,z2) #PV17
+			res = res*special.struve(1,btt*qT_max)
+			### PV17
+			if self.g_k == 'PV17': res = res*scl.analytic_sudakov(btt)*scl.g_K_bac_lgm(btt,had2,z1,z2)
+
+
+			
+			return res	
+			
+		test1 = lambda bt : fnc1(bt)		
+		test2 = lambda bt : fnc2(bt)
+		
+		#print(qT_max)
+		N=10
+		fbt1 = FBT(1)
+		wfbt1 = fbt1.fbt(test1,qT_max,N)
+		wfbt1 = wfbt1*pi**2*qT_max
 
 		fbt2 = FBT(0)
 		wfbt2 = fbt2.fbt(test2,qT_max,N)
 		wfbt2 = wfbt2*pi**2*qT_max	
 
 		wfbt_pol = wfbt1 - wfbt2
-###########################################################################
-##### partial
 
-		test1_UP = lambda bt : fnc1(bt)[1]			
-		test2_UP = lambda bt : fnc2(bt)[1]
-
-		test1_DO = lambda bt : fnc1(bt)[2]			
-		test2_DO = lambda bt : fnc2(bt)[2]
-
-		test1_ST = lambda bt : fnc1(bt)[3]			
-		test2_ST = lambda bt : fnc2(bt)[3]
-
-		test1_UPb = lambda bt : fnc1(bt)[4]			
-		test2_UPb = lambda bt : fnc2(bt)[4]
-
-		test1_DOb = lambda bt : fnc1(bt)[5]			
-		test2_DOb = lambda bt : fnc2(bt)[5]
-
-		test1_STb = lambda bt : fnc1(bt)[6]			
-		test2_STb = lambda bt : fnc2(bt)[6]
-
-		wfbt1_UP = fbt1.fbt(test1_UP,qT_max,N)
-		wfbt1_UP = wfbt1_UP*pi**2*qT_max
-		wfbt1_DO = fbt1.fbt(test1_DO,qT_max,N)
-		wfbt1_DO = wfbt1_DO*pi**2*qT_max
-		wfbt1_ST = fbt1.fbt(test1_ST,qT_max,N)
-		wfbt1_ST = wfbt1_ST*pi**2*qT_max
-
-		wfbt1_UPb = fbt1.fbt(test1_UPb,qT_max,N)
-		wfbt1_UPb = wfbt1_UPb*pi**2*qT_max
-		wfbt1_DOb = fbt1.fbt(test1_DOb,qT_max,N)
-		wfbt1_DOb = wfbt1_DOb*pi**2*qT_max
-		wfbt1_STb = fbt1.fbt(test1_STb,qT_max,N)
-		wfbt1_STb = wfbt1_STb*pi**2*qT_max
-
-		wfbt2_UP = fbt2.fbt(test2_UP,qT_max,N)
-		wfbt2_UP = wfbt2_UP*pi**2*qT_max
-		wfbt2_DO = fbt2.fbt(test2_DO,qT_max,N)
-		wfbt2_DO = wfbt2_DO*pi**2*qT_max
-		wfbt2_ST = fbt2.fbt(test2_ST,qT_max,N)
-		wfbt2_ST = wfbt2_ST*pi**2*qT_max
-
-		wfbt2_UPb = fbt2.fbt(test2_UPb,qT_max,N)
-		wfbt2_UPb = wfbt2_UPb*pi**2*qT_max
-		wfbt2_DOb = fbt2.fbt(test2_DOb,qT_max,N)
-		wfbt2_DOb = wfbt2_DOb*pi**2*qT_max
-		wfbt2_STb = fbt2.fbt(test2_STb,qT_max,N)
-		wfbt2_STb = wfbt2_STb*pi**2*qT_max
-
-		wfbt_pol_UP = wfbt1_UP - wfbt2_UP
-		wfbt_pol_DO = wfbt1_DO - wfbt2_DO
-		wfbt_pol_ST = wfbt1_ST - wfbt2_ST
+		return wfbt_pol
 
 
-		wfbt_pol_UPb = wfbt1_UPb - wfbt2_UPb
-		wfbt_pol_DOb = wfbt1_DOb - wfbt2_DOb
-		wfbt_pol_STb = wfbt1_STb - wfbt2_STb
+	def do(self,had1,had2,z1,z2,param,wdt_pol,mss):
+
+		fnt = cr_sec()
+		fnt.mass = self.mass        
+		fnt.frag2 = self.frag2
+		fnt.qq=self.scale
 
 
-		#wfbt_pol_UP =0# wfbt1_UP - wfbt2_UP
-		#wfbt_pol_DO =0# wfbt1_DO - wfbt2_DO
-		#wfbt_pol_ST =0# wfbt1_ST - wfbt2_ST
-		#wfbt_pol_UPb =0# wfbt1_UPb - wfbt2_UPb
-		#wfbt_pol_DOb =0# wfbt1_DOb - wfbt2_DOb
-		#wfbt_pol_STb =0# wfbt1_STb - wfbt2_STb
+		mdl1 = model_bt()
+		mdl1.mass = 1.115
+		mdl1.qq = self.scale
+		mdl2 = model_bt()
+		mdl2.mass = 0.
+		mdl2.qq = self.scale
+		
+		wdt1_unp = 0.2
+		wdt2_unp = 0.2
+
+		scl = Soft(1)
+		scl.bmax = self.bmax 
+		scl.scale = self.scale
+		qT_max = self.scale*self.coef
+		scl.nf=self.nf
+
+		def fnc1(btt):
+
+			res =btt*fnt.cross_sec2_polda(had1,had2,z1,z2,scl.mu_b(btt),param)[2]
+
+			if self.mdl_num == 'gauss' :res = res*mdl1.MD_gauss(btt,z1,wdt_pol)# h1 model
+			res = res*mdl2.MD_pv17(btt,z2) #PV17
+			res = res*special.struve(0,btt*qT_max)
+			### PV17
+			if self.g_k == 'PV17': res = res*scl.analytic_sudakov(btt)*scl.g_K_bac_lgm(btt,had2,z1,z2)
 
 
 
-		return wfbt_pol, wfbt_pol_UP, wfbt_pol_DO, wfbt_pol_ST, wfbt_pol_UPb, wfbt_pol_DOb, wfbt_pol_STb	
+			#print(res)
+			return res		
+
+		def fnc2(btt):
+
+			res= btt*fnt.cross_sec2_polda(had1,had2,z1,z2,scl.mu_b(btt),param)[2]
+			
+			if self.mdl_num == 'gauss' :res = res*mdl1.MD_gauss(btt,z1,wdt_pol)# h1 model
+			res = res*mdl2.MD_pv17(btt,z2) #PV17
+			res = res*special.struve(1,btt*qT_max)
+			### PV17
+			if self.g_k == 'PV17': res = res*scl.analytic_sudakov(btt)*scl.g_K_bac_lgm(btt,had2,z1,z2)
+
+
+			
+			return res	
+			
+		test1 = lambda bt : fnc1(bt)		
+		test2 = lambda bt : fnc2(bt)
+		
+		#print(qT_max)
+		N=10
+		fbt1 = FBT(1)
+		wfbt1 = fbt1.fbt(test1,qT_max,N)
+		wfbt1 = wfbt1*pi**2*qT_max
+
+		fbt2 = FBT(0)
+		wfbt2 = fbt2.fbt(test2,qT_max,N)
+		wfbt2 = wfbt2*pi**2*qT_max	
+
+		wfbt_pol = wfbt1 - wfbt2
+
+		return wfbt_pol
+
+
+	def st(self,had1,had2,z1,z2,param,wdt_pol,mss):
+
+		fnt = cr_sec()
+		fnt.mass = self.mass        
+		fnt.frag2 = self.frag2
+		fnt.qq=self.scale
+
+
+		mdl1 = model_bt()
+		mdl1.mass = 1.115
+		mdl1.qq = self.scale
+		mdl2 = model_bt()
+		mdl2.mass = 0.
+		mdl2.qq = self.scale
+		
+		wdt1_unp = 0.2
+		wdt2_unp = 0.2
+
+		scl = Soft(1)
+		scl.bmax = self.bmax 
+		scl.scale = self.scale
+		qT_max = self.scale*self.coef
+		scl.nf=self.nf
+
+		def fnc1(btt):
+
+			res =btt*fnt.cross_sec2_polda(had1,had2,z1,z2,scl.mu_b(btt),param)[3]
+
+
+			if self.mdl_num == 'gauss' :res = res*mdl1.MD_gauss(btt,z1,wdt_pol)# h1 model
+			res = res*mdl2.MD_pv17(btt,z2) #PV17
+			res = res*special.struve(0,btt*qT_max)
+			### PV17
+			if self.g_k == 'PV17': res = res*scl.analytic_sudakov(btt)*scl.g_K_bac_lgm(btt,had2,z1,z2)
+
+
+
+			#print(res)
+			return res		
+
+		def fnc2(btt):
+
+			res= btt*fnt.cross_sec2_polda(had1,had2,z1,z2,scl.mu_b(btt),param)[3]
+			
+			if self.mdl_num == 'gauss' :res = res*mdl1.MD_gauss(btt,z1,wdt_pol)# h1 model
+			res = res*mdl2.MD_pv17(btt,z2) #PV17
+			res = res*special.struve(1,btt*qT_max)
+			### PV17
+			if self.g_k == 'PV17': res = res*scl.analytic_sudakov(btt)*scl.g_K_bac_lgm(btt,had2,z1,z2)
+
+
+			
+			return res	
+			
+		test1 = lambda bt : fnc1(bt)		
+		test2 = lambda bt : fnc2(bt)
+		
+		#print(qT_max)
+		N=10
+		fbt1 = FBT(1)
+		wfbt1 = fbt1.fbt(test1,qT_max,N)
+		wfbt1 = wfbt1*pi**2*qT_max
+
+		fbt2 = FBT(0)
+		wfbt2 = fbt2.fbt(test2,qT_max,N)
+		wfbt2 = wfbt2*pi**2*qT_max	
+
+		wfbt_pol = wfbt1 - wfbt2
+
+		return wfbt_pol
+
+	def upb(self,had1,had2,z1,z2,param,wdt_pol,mss):
+
+		fnt = cr_sec()
+		fnt.mass = self.mass        
+		fnt.frag2 = self.frag2
+		fnt.qq=self.scale
+
+
+		mdl1 = model_bt()
+		mdl1.mass = 1.115
+		mdl1.qq = self.scale
+		mdl2 = model_bt()
+		mdl2.mass = 0.
+		mdl2.qq = self.scale
+		
+		wdt1_unp = 0.2
+		wdt2_unp = 0.2
+
+		scl = Soft(1)
+		scl.bmax = self.bmax 
+		scl.scale = self.scale
+		qT_max = self.scale*self.coef
+		scl.nf=self.nf
+
+		def fnc1(btt):
+
+			res =btt*fnt.cross_sec2_polda(had1,had2,z1,z2,scl.mu_b(btt),param)[4]
+
+
+			if self.mdl_num == 'gauss' :res = res*mdl1.MD_gauss(btt,z1,wdt_pol)# h1 model
+			res = res*mdl2.MD_pv17(btt,z2) #PV17
+			res = res*special.struve(0,btt*qT_max)
+			### PV17
+			if self.g_k == 'PV17': res = res*scl.analytic_sudakov(btt)*scl.g_K_bac_lgm(btt,had2,z1,z2)
+
+
+
+			#print(res)
+			return res		
+
+		def fnc2(btt):
+
+			res= btt*fnt.cross_sec2_polda(had1,had2,z1,z2,scl.mu_b(btt),param)[4]
+			
+			if self.mdl_num == 'gauss' :res = res*mdl1.MD_gauss(btt,z1,wdt_pol)# h1 model
+			res = res*mdl2.MD_pv17(btt,z2) #PV17
+			res = res*special.struve(1,btt*qT_max)
+			### PV17
+			if self.g_k == 'PV17': res = res*scl.analytic_sudakov(btt)*scl.g_K_bac_lgm(btt,had2,z1,z2)
+
+
+			
+			return res	
+			
+		test1 = lambda bt : fnc1(bt)		
+		test2 = lambda bt : fnc2(bt)
+		
+		#print(qT_max)
+		N=10
+		fbt1 = FBT(1)
+		wfbt1 = fbt1.fbt(test1,qT_max,N)
+		wfbt1 = wfbt1*pi**2*qT_max
+
+		fbt2 = FBT(0)
+		wfbt2 = fbt2.fbt(test2,qT_max,N)
+		wfbt2 = wfbt2*pi**2*qT_max	
+
+		wfbt_pol = wfbt1 - wfbt2
+
+		return wfbt_pol
+
+	def dob(self,had1,had2,z1,z2,param,wdt_pol,mss):
+
+		fnt = cr_sec()
+		fnt.mass = self.mass        
+		fnt.frag2 = self.frag2
+		fnt.qq=self.scale
+
+
+		mdl1 = model_bt()
+		mdl1.mass = 1.115
+		mdl1.qq = self.scale
+		mdl2 = model_bt()
+		mdl2.mass = 0.
+		mdl2.qq = self.scale
+		
+		wdt1_unp = 0.2
+		wdt2_unp = 0.2
+
+		scl = Soft(1)
+		scl.bmax = self.bmax 
+		scl.scale = self.scale
+		qT_max = self.scale*self.coef
+		scl.nf=self.nf
+
+		def fnc1(btt):
+
+			res =btt*fnt.cross_sec2_polda(had1,had2,z1,z2,scl.mu_b(btt),param)[5]
+
+
+			if self.mdl_num == 'gauss' :res = res*mdl1.MD_gauss(btt,z1,wdt_pol)# h1 model
+			res = res*mdl2.MD_pv17(btt,z2) #PV17
+			res = res*special.struve(0,btt*qT_max)
+			### PV17
+			if self.g_k == 'PV17': res = res*scl.analytic_sudakov(btt)*scl.g_K_bac_lgm(btt,had2,z1,z2)
+
+
+
+			#print(res)
+			return res		
+
+		def fnc2(btt):
+
+			res= btt*fnt.cross_sec2_polda(had1,had2,z1,z2,scl.mu_b(btt),param)[5]
+			
+			if self.mdl_num == 'gauss' :res = res*mdl1.MD_gauss(btt,z1,wdt_pol)# h1 model
+			res = res*mdl2.MD_pv17(btt,z2) #PV17
+			res = res*special.struve(1,btt*qT_max)
+			### PV17
+			if self.g_k == 'PV17': res = res*scl.analytic_sudakov(btt)*scl.g_K_bac_lgm(btt,had2,z1,z2)
+
+
+			
+			return res	
+			
+		test1 = lambda bt : fnc1(bt)		
+		test2 = lambda bt : fnc2(bt)
+		
+		#print(qT_max)
+		N=10
+		fbt1 = FBT(1)
+		wfbt1 = fbt1.fbt(test1,qT_max,N)
+		wfbt1 = wfbt1*pi**2*qT_max
+
+		fbt2 = FBT(0)
+		wfbt2 = fbt2.fbt(test2,qT_max,N)
+		wfbt2 = wfbt2*pi**2*qT_max	
+
+		wfbt_pol = wfbt1 - wfbt2
+
+		return wfbt_pol
+
+	def stb(self,had1,had2,z1,z2,param,wdt_pol,mss):
+
+		fnt = cr_sec()
+		fnt.mass = self.mass        
+		fnt.frag2 = self.frag2
+		fnt.qq=self.scale
+
+
+		mdl1 = model_bt()
+		mdl1.mass = 1.115
+		mdl1.qq = self.scale
+		mdl2 = model_bt()
+		mdl2.mass = 0.
+		mdl2.qq = self.scale
+		
+		wdt1_unp = 0.2
+		wdt2_unp = 0.2
+
+		scl = Soft(1)
+		scl.bmax = self.bmax 
+		scl.scale = self.scale
+		qT_max = self.scale*self.coef
+		scl.nf=self.nf
+
+		def fnc1(btt):
+
+			res =btt*fnt.cross_sec2_polda(had1,had2,z1,z2,scl.mu_b(btt),param)[6]
+
+
+			if self.mdl_num == 'gauss' :res = res*mdl1.MD_gauss(btt,z1,wdt_pol)# h1 model
+			res = res*mdl2.MD_pv17(btt,z2) #PV17
+			res = res*special.struve(0,btt*qT_max)
+			### PV17
+			if self.g_k == 'PV17': res = res*scl.analytic_sudakov(btt)*scl.g_K_bac_lgm(btt,had2,z1,z2)
+
+
+
+			#print(res)
+			return res		
+
+		def fnc2(btt):
+
+			res= btt*fnt.cross_sec2_polda(had1,had2,z1,z2,scl.mu_b(btt),param)[6]
+			
+			if self.mdl_num == 'gauss' :res = res*mdl1.MD_gauss(btt,z1,wdt_pol)# h1 model
+			res = res*mdl2.MD_pv17(btt,z2) #PV17
+			res = res*special.struve(1,btt*qT_max)
+			### PV17
+			if self.g_k == 'PV17': res = res*scl.analytic_sudakov(btt)*scl.g_K_bac_lgm(btt,had2,z1,z2)
+
+
+			
+			return res	
+			
+		test1 = lambda bt : fnc1(bt)		
+		test2 = lambda bt : fnc2(bt)
+		
+		#print(qT_max)
+		N=10
+		fbt1 = FBT(1)
+		wfbt1 = fbt1.fbt(test1,qT_max,N)
+		wfbt1 = wfbt1*pi**2*qT_max
+
+		fbt2 = FBT(0)
+		wfbt2 = fbt2.fbt(test2,qT_max,N)
+		wfbt2 = wfbt2*pi**2*qT_max	
+
+		wfbt_pol = wfbt1 - wfbt2
+
+		return wfbt_pol
+
 
 
 	def ratio(self,had1,had2,z1,z2,param,wdt_pol,mss):
 	
 		mass = 1.115	
-		num, UP, DO, ST, UPb, DOb, STb  = self.numerator(had1,had2,z1,z2,param,wdt_pol,mss)
+		num = self.numerator(had1,had2,z1,z2,param,wdt_pol,mss)
 		den = self.denominator(had1,had2,z1,z2)
+
+		UP = self.up(had1,had2,z1,z2,param,wdt_pol,mss)
+		DO = self.do(had1,had2,z1,z2,param,wdt_pol,mss)
+		ST = self.st(had1,had2,z1,z2,param,wdt_pol,mss)
+		
+		UPb = self.upb(had1,had2,z1,z2,param,wdt_pol,mss)
+		DOb = self.dob(had1,had2,z1,z2,param,wdt_pol,mss)
+		STb = self.stb(had1,had2,z1,z2,param,wdt_pol,mss)
 
 		#fnt = cr_sec()
 		#fnt.mass = self.mass  
