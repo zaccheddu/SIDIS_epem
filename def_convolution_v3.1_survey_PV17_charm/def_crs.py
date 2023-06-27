@@ -45,8 +45,8 @@ class cr_sec:
 
 		if had1=='lbd': 
 
-			fact=1/(2-zp1)
-			fact_bar=(1-zp1)/(2-zp1)
+			fact=1/(2-zp1) ##1/(1+(1-z)**2)	
+			fact_bar=(1-zp1)/(2-zp1)  ## ((1-z)**2)/(1+(1-z)**2)	
 
 			hadron1='lbd'
 		#

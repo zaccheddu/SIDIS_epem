@@ -52,7 +52,7 @@ dati_lk = pd.read_csv("fit_parameters/lk_point.csv")
 
 
 def grids_lp(df,su2,charm,scale,coef,nf):
-    mdl_den = 'pwr_lw_star'
+    mdl_den = 'pwr_lw_star'	
     mdl_num = 'gauss'
     g_k_2h = 'PV17'
     coef = coef #0.27

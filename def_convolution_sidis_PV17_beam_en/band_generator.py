@@ -292,6 +292,7 @@ dati_ln3=grids_ln(df3,su2_3,charm3,sep,IC,pdf_name)
 # In[15]:
 
 
+#cut_dfs=300
 cut_dfs=300
 
 
@@ -439,7 +440,8 @@ def grids_lp_bands(df_prm,df,su2,charm,sep,IC,pdf_name):
     dati_lp['mins'] = mins_lp
     dati_lp['maxx'] = maxx_lp
 
-    dati_lp.to_csv(r'fit_parameters/bands_/dati_lprot_su_charm_'+str(su2)+'_'+str(charm)+'_scale_'+str(sep)+'_PDF_'+str(pdf_name)+'_IC_'+str(IC)+'_def.csv',index=False)
+    #dati_lp.to_csv(r'fit_parameters/bands_/dati_lprot_su_charm_'+str(su2)+'_'+str(charm)+'_scale_'+str(sep)+'_PDF_'+str(pdf_name)+'_IC_'+str(IC)+'_def.csv',index=False)
+    dati_lp.to_csv(r'fit_parameters/stime_fr/dati_lprot_su_charm_'+str(su2)+'_'+str(charm)+'_scale_'+str(sep)+'_PDF_'+str(pdf_name)+'_IC_'+str(IC)+'_def.csv',index=False)
 
     #return dati_lp
 
@@ -595,7 +597,8 @@ def grids_ln_bands(df_prm,df,su2,charm,sep,IC,pdf_name):
     dati_lp['mins'] = mins_lp
     dati_lp['maxx'] = maxx_lp
 
-    dati_lp.to_csv(r'fit_parameters/bands_/dati_deuterium_su_charm_'+str(su2)+'_'+str(charm)+'_scale_'+str(sep)+'_PDF_'+str(pdf_name)+'_IC_'+str(IC)+'_def.csv',index=False)
+    #dati_lp.to_csv(r'fit_parameters/bands_/dati_deuterium_su_charm_'+str(su2)+'_'+str(charm)+'_scale_'+str(sep)+'_PDF_'+str(pdf_name)+'_IC_'+str(IC)+'_def.csv',index=False)
+    dati_lp.to_csv(r'fit_parameters/stime_fr/dati_deuterium_su_charm_'+str(su2)+'_'+str(charm)+'_scale_'+str(sep)+'_PDF_'+str(pdf_name)+'_IC_'+str(IC)+'_def.csv',index=False)
     
     #return dati_lp
 
@@ -627,13 +630,13 @@ start = time.time()
 
 
 
-p1 = multiprocessing.Process(target=grids_ln_bands,args=(dfs1,df1,su2_1,charm1,sep,IC,pdf_name1))
-p2 = multiprocessing.Process(target=grids_ln_bands,args=(dfs2,df2,su2_2,charm2,sep,IC,pdf_name1))
-p3 = multiprocessing.Process(target=grids_ln_bands,args=(dfs3,df3,su2_3,charm3,sep,IC,pdf_name1))
+p1 = multiprocessing.Process(target=grids_lp_bands,args=(dfs1,df1,su2_1,charm1,sep,IC,pdf_name1))
+p2 = multiprocessing.Process(target=grids_lp_bands,args=(dfs2,df2,su2_2,charm2,sep,IC,pdf_name1))
+p3 = multiprocessing.Process(target=grids_lp_bands,args=(dfs3,df3,su2_3,charm3,sep,IC,pdf_name1))
 
-p4 = multiprocessing.Process(target=grids_ln_bands,args=(dfs1,df1,su2_1,charm1,sep2,IC,pdf_name1))
-p5 = multiprocessing.Process(target=grids_ln_bands,args=(dfs2,df2,su2_2,charm2,sep2,IC,pdf_name1))
-p6 = multiprocessing.Process(target=grids_ln_bands,args=(dfs3,df3,su2_3,charm3,sep2,IC,pdf_name1))
+p4 = multiprocessing.Process(target=grids_ln_bands,args=(dfs1,df1,su2_1,charm1,sep,IC,pdf_name1))
+p5 = multiprocessing.Process(target=grids_ln_bands,args=(dfs2,df2,su2_2,charm2,sep,IC,pdf_name1))
+p6 = multiprocessing.Process(target=grids_ln_bands,args=(dfs3,df3,su2_3,charm3,sep,IC,pdf_name1))
 
 p7 = multiprocessing.Process(target=grids_lp_bands,args=(dfs2,df2,su2_2,charm2,sep,IC,pdf_name2))
 p8 = multiprocessing.Process(target=grids_lp_bands,args=(dfs3,df3,su2_3,charm3,sep,IC,pdf_name2))
@@ -645,28 +648,28 @@ p10 = multiprocessing.Process(target=grids_ln_bands,args=(dfs3,df3,su2_3,charm3,
 
 
 
-#p1.start()
-#p2.start()
-#p3.start()
-#p4.start()
-#p5.start()
-#p6.start()
-p7.start()
-p8.start()
-p9.start()
-p10.start()
+p1.start()
+p2.start()
+p3.start()
+p4.start()
+p5.start()
+p6.start()
+#p7.start()
+#p8.start()
+#p9.start()
+#p10.start()
 
 
-#p1.join()
-#p2.join()
-#p3.join()
-#p4.join()
-#p5.join()
-#p6.join()
-p7.join()
-p8.join()
-p9.join()
-p10.join()
+p1.join()
+p2.join()
+p3.join()
+p4.join()
+p5.join()
+p6.join()
+#p7.join()
+#p8.join()
+#p9.join()
+#p10.join()
 
 
 end = time.time()
