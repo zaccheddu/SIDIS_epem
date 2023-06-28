@@ -48,6 +48,11 @@ class cr_sec:
 			fact=1/(2-zp1) ##1/(1+(1-z)**2)	
 			fact_bar=(1-zp1)/(2-zp1)  ## ((1-z)**2)/(1+(1-z)**2)	
 
+			#### high suppression
+			#fact=1/(1+(1-zp1)**2)	
+			#fact_bar=((1-zp1)**2)/(1+(1-zp1)**2)	
+
+
 			hadron1='lbd'
 		#
 			dss1=akk_ff()
@@ -81,6 +86,11 @@ class cr_sec:
 
 			fact_bar=1/(2-zp1)
 			fact=(1-zp1)/(2-zp1)
+
+			#### high suppression
+			#fact_bar=1/(1+(1-zp1)**2)	
+			#fact=((1-zp1)**2)/(1+(1-zp1)**2)	
+
 
 			hadron1='lbd'
 		#
@@ -260,6 +270,11 @@ class cr_sec:
 
 		fact=1/(2-zp1)
 		fact_bar=(1-zp1)/(2-zp1)
+
+		#### high suppression
+		#fact=1/(1+(1-zp1)**2)	
+		#fact_bar=((1-zp1)**2)/(1+(1-zp1)**2)	
+
 
 		hadron1='lbd'
 	#

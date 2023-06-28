@@ -42,6 +42,10 @@ df1 = pd.read_csv('fit_parameters/dfs_/fit_hadron_coef_0.27_chi_1.174__True_gk_P
 df2 = pd.read_csv('fit_parameters/dfs_/fit_hadron_coef_0.27_chi_1.259__True_gk_PV17_su_no_charmyes_correction_no.csv')
 df3 = pd.read_csv('fit_parameters/dfs_/fit_hadron_coef_0.27_chi_1.361__True_gk_PV17_su_yes_charmyes_correction_no.csv')
 
+#df1 = pd.read_csv('fit_parameters/stime_fr/fit_hadron_coef_0.27_chi_1.191__True_gk_PV17_su_no_charmno_correction_no.csv')
+#df2 = pd.read_csv('fit_parameters/stime_fr/fit_hadron_coef_0.27_chi_1.262__True_gk_PV17_su_no_charmyes_correction_no.csv')
+#df3 = pd.read_csv('fit_parameters/stime_fr/fit_hadron_coef_0.27_chi_1.509__True_gk_PV17_su_yes_charmyes_correction_no.csv')
+
 
 # In[6]:
 
@@ -293,7 +297,7 @@ dati_ln3=grids_ln(df3,su2_3,charm3,sep,IC,pdf_name)
 
 
 #cut_dfs=300
-cut_dfs=300
+cut_dfs=1
 
 
 # In[16]:
@@ -440,8 +444,8 @@ def grids_lp_bands(df_prm,df,su2,charm,sep,IC,pdf_name):
     dati_lp['mins'] = mins_lp
     dati_lp['maxx'] = maxx_lp
 
-    #dati_lp.to_csv(r'fit_parameters/bands_/dati_lprot_su_charm_'+str(su2)+'_'+str(charm)+'_scale_'+str(sep)+'_PDF_'+str(pdf_name)+'_IC_'+str(IC)+'_def.csv',index=False)
-    dati_lp.to_csv(r'fit_parameters/stime_fr/dati_lprot_su_charm_'+str(su2)+'_'+str(charm)+'_scale_'+str(sep)+'_PDF_'+str(pdf_name)+'_IC_'+str(IC)+'_def.csv',index=False)
+    dati_lp.to_csv(r'fit_parameters/bands_/dati_lprot_su_charm_'+str(su2)+'_'+str(charm)+'_scale_'+str(sep)+'_PDF_'+str(pdf_name)+'_IC_'+str(IC)+'_def.csv',index=False)
+    #dati_lp.to_csv(r'fit_parameters/stime_fr/dati_lprot_su_charm_'+str(su2)+'_'+str(charm)+'_scale_'+str(sep)+'_PDF_'+str(pdf_name)+'_IC_'+str(IC)+'_def.csv',index=False)
 
     #return dati_lp
 
@@ -597,8 +601,8 @@ def grids_ln_bands(df_prm,df,su2,charm,sep,IC,pdf_name):
     dati_lp['mins'] = mins_lp
     dati_lp['maxx'] = maxx_lp
 
-    #dati_lp.to_csv(r'fit_parameters/bands_/dati_deuterium_su_charm_'+str(su2)+'_'+str(charm)+'_scale_'+str(sep)+'_PDF_'+str(pdf_name)+'_IC_'+str(IC)+'_def.csv',index=False)
-    dati_lp.to_csv(r'fit_parameters/stime_fr/dati_deuterium_su_charm_'+str(su2)+'_'+str(charm)+'_scale_'+str(sep)+'_PDF_'+str(pdf_name)+'_IC_'+str(IC)+'_def.csv',index=False)
+    dati_lp.to_csv(r'fit_parameters/bands_/dati_deuterium_su_charm_'+str(su2)+'_'+str(charm)+'_scale_'+str(sep)+'_PDF_'+str(pdf_name)+'_IC_'+str(IC)+'_def.csv',index=False)
+    #dati_lp.to_csv(r'fit_parameters/stime_fr/dati_deuterium_su_charm_'+str(su2)+'_'+str(charm)+'_scale_'+str(sep)+'_PDF_'+str(pdf_name)+'_IC_'+str(IC)+'_def.csv',index=False)
     
     #return dati_lp
 

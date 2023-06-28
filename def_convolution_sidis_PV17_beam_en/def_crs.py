@@ -69,12 +69,12 @@ class cr_sec:
 
 		if had1=='lbd': 
 
-			#fact=1/(2-zp1)
-			#fact_bar=(1-zp1)/(2-zp1)
+			fact=1/(2-zp1)
+			fact_bar=(1-zp1)/(2-zp1)
 
 			#### high suppression
-			fact=1/(1+(1-zp1)**2)	
-			fact_bar=((1-zp1)**2)/(1+(1-zp1)**2)	
+			#fact=1/(1+(1-zp1)**2)	
+			#fact_bar=((1-zp1)**2)/(1+(1-zp1)**2)	
 
 
 			hadron1='lbd'
@@ -100,20 +100,20 @@ class cr_sec:
 			dstb1=dstb1*fact_bar
 
 			dch1=dss1.D1(hadron1,"c",zp1,q)
-			dch1=dch1*fact
+			dch1=dch1/2#*fact
 
 			dchb1=dss1.D1(hadron1,"cb",zp1,q)
-			dchb1=dchb1*fact_bar
+			dchb1=dchb1/2#*fact_bar
 
 		
 		elif had1=='lbd_b':
 
-			#fact_bar=1/(2-zp1)
-			#fact=(1-zp1)/(2-zp1)
+			fact_bar=1/(2-zp1)
+			fact=(1-zp1)/(2-zp1)
 
 			#### high suppression
-			fact_bar=1/(1+(1-zp1)**2)	
-			fact=((1-zp1)**2)/(1+(1-zp1)**2)	
+			#fact_bar=1/(1+(1-zp1)**2)	
+			#fact=((1-zp1)**2)/(1+(1-zp1)**2)	
 
 
 
@@ -140,10 +140,10 @@ class cr_sec:
 			dstb1=dstb1*fact_bar
 
 			dch1=dss1.D1(hadron1,"c",zp1,q)
-			dch1=dch1*fact
+			dch1=dch1/2#*fact
 
 			dchb1=dss1.D1(hadron1,"cb",zp1,q)
-			dchb1=dchb1*fact_bar
+			dchb1=dchb1/2#*fact_bar
 
 
 		#print( dup1)
@@ -302,12 +302,12 @@ class cr_sec:
 
 
 
-		#fact=1/(2-zp1)
-		#fact_bar=(1-zp1)/(2-zp1)
+		fact=1/(2-zp1)
+		fact_bar=(1-zp1)/(2-zp1)
 
 		#### high suppression
-		fact=1/(1+(1-zp1)**2)	
-		fact_bar=((1-zp1)**2)/(1+(1-zp1)**2)	
+		#fact=1/(1+(1-zp1)**2)	
+		#fact_bar=((1-zp1)**2)/(1+(1-zp1)**2)	
 
 		hadron1='lbd'
 	#

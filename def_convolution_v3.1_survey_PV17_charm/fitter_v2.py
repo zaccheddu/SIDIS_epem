@@ -554,7 +554,7 @@ class fitter:
 		values = np.append(values,chi_dof)
 
 		df.loc[len(df), :] = values
-		df.to_csv(r'fit_parameters/confirm/fit_'+str(self.type)+'_coef_'+ str(self.coef)+'_chi_'+str(chi_dof)+'__'+str(fit6.valid)+'_gk_'+str(self.g_k_2h)+'_su_'+str(self.su2)+'_charm'+str(self.charm)\
+		df.to_csv(r'fit_parameters/fit_'+str(self.type)+'_coef_'+ str(self.coef)+'_chi_'+str(chi_dof)+'__'+str(fit6.valid)+'_gk_'+str(self.g_k_2h)+'_su_'+str(self.su2)+'_charm'+str(self.charm)\
 			+'_correction_'+str(self.correct) +'.csv',index=False)
 
 		if self.cut_h2==0:
@@ -566,7 +566,7 @@ class fitter:
 			cut_h2s_pion=['pions_cut','pions-_cut','pions+_cut','pions_lambda_cut','pions+_lambda_cut','pions-_lambda_cut']
 		chi_pions=np.array([])
 		pnt=np.array([])
-		prm=pd.read_csv(r'fit_parameters/confirm/fit_'+str(self.type)+'_coef_'+ str(self.coef)+'_chi_'+str(chi_dof)+'__'+str(fit6.valid)+'_gk_'+str(self.g_k_2h)+'_su_'+str(self.su2)+'_charm'+str(self.charm)\
+		prm=pd.read_csv(r'fit_parameters/fit_'+str(self.type)+'_coef_'+ str(self.coef)+'_chi_'+str(chi_dof)+'__'+str(fit6.valid)+'_gk_'+str(self.g_k_2h)+'_su_'+str(self.su2)+'_charm'+str(self.charm)\
 				+'_correction_'+str(self.correct) +'.csv')
 				
 		for ct_h2 in cut_h2s_pion:
@@ -641,7 +641,7 @@ class fitter:
 		
 
 			chi_kaons=np.append(chi_kaons,np.round(chi_kaon,2))
-		sourceFile = open(r'fit_parameters/confirm/fit_'+str(self.type)+'_coef_'+ str(self.coef)+'_chi_'+str(chi_dof)+'__'+str(fit6.valid)+'_gk_'+str(self.g_k_2h)+'_su_'+str(self.su2)+'_charm'+str(self.charm) \
+		sourceFile = open(r'fit_parameters/fit_'+str(self.type)+'_coef_'+ str(self.coef)+'_chi_'+str(chi_dof)+'__'+str(fit6.valid)+'_gk_'+str(self.g_k_2h)+'_su_'+str(self.su2)+'_charm'+str(self.charm) \
 			+'_correction_'+str(self.correct)+'.txt', 'w')
 		print(fit6.init_params, file = sourceFile)
 		print(fit6, file = sourceFile)
