@@ -297,7 +297,7 @@ dati_ln3=grids_ln(df3,su2_3,charm3,sep,IC,pdf_name)
 
 
 #cut_dfs=300
-cut_dfs=1
+cut_dfs=50
 
 
 # In[16]:
@@ -444,7 +444,7 @@ def grids_lp_bands(df_prm,df,su2,charm,sep,IC,pdf_name):
     dati_lp['mins'] = mins_lp
     dati_lp['maxx'] = maxx_lp
 
-    dati_lp.to_csv(r'fit_parameters/bands_/dati_lprot_su_charm_'+str(su2)+'_'+str(charm)+'_scale_'+str(sep)+'_PDF_'+str(pdf_name)+'_IC_'+str(IC)+'_def.csv',index=False)
+    #dati_lp.to_csv(r'fit_parameters/bands_/dati_lprot_su_charm_'+str(su2)+'_'+str(charm)+'_scale_'+str(sep)+'_PDF_'+str(pdf_name)+'_IC_'+str(IC)+'_def.csv',index=False)
     #dati_lp.to_csv(r'fit_parameters/stime_fr/dati_lprot_su_charm_'+str(su2)+'_'+str(charm)+'_scale_'+str(sep)+'_PDF_'+str(pdf_name)+'_IC_'+str(IC)+'_def.csv',index=False)
 
     #return dati_lp
@@ -492,7 +492,7 @@ def grids_ln_bands(df_prm,df,su2,charm,sep,IC,pdf_name):
         elif hads1 == 310 : had1='lbd_b'
 
         if hads2 == 100 : had2='proton'
-        elif hads2 == 105 : had2='deuterium' # 'proton','neutron','helium','deuterium','lead'
+        elif hads2 == 105 : had2='deuterium'#deuterium' # 'proton','neutron','helium','deuterium','lead'
 
         if su2=='no' and charm=='no':
             j=0
@@ -601,8 +601,8 @@ def grids_ln_bands(df_prm,df,su2,charm,sep,IC,pdf_name):
     dati_lp['mins'] = mins_lp
     dati_lp['maxx'] = maxx_lp
 
-    dati_lp.to_csv(r'fit_parameters/bands_/dati_deuterium_su_charm_'+str(su2)+'_'+str(charm)+'_scale_'+str(sep)+'_PDF_'+str(pdf_name)+'_IC_'+str(IC)+'_def.csv',index=False)
-    #dati_lp.to_csv(r'fit_parameters/stime_fr/dati_deuterium_su_charm_'+str(su2)+'_'+str(charm)+'_scale_'+str(sep)+'_PDF_'+str(pdf_name)+'_IC_'+str(IC)+'_def.csv',index=False)
+    #dati_lp.to_csv(r'fit_parameters/bands_/dati_deuterium_su_charm_'+str(su2)+'_'+str(charm)+'_scale_'+str(sep)+'_PDF_'+str(pdf_name)+'_IC_'+str(IC)+'_def.csv',index=False)
+    dati_lp.to_csv(r'fit_parameters/stime_fr/dati_'+str(had2)+'_su_charm_'+str(su2)+'_'+str(charm)+'_scale_'+str(sep)+'_PDF_'+str(pdf_name)+'_IC_'+str(IC)+'_def.csv',index=False)
     
     #return dati_lp
 
@@ -613,7 +613,7 @@ sep = 28.6 # 28.6, 44.7, 63.2, 104.9, 140.7
 
 sep2 = 63.2 # 28.6, 44.7, 63.2, 104.9, 140.7
 pdf_name1='CT14IC'# 'NNPDF40'#, 'CT14IC', 'CT10'
-pdf_name2='NNPDF40_pch'#'NNPDF40'# 'NNPDF40_pch'#, 'CT14IC', 'CT10'
+pdf_name2='NNPDF40'# 'NNPDF40_pch'#'NNPDF40'# 'NNPDF40_pch'#, 'CT14IC', 'CT10'
 
 IC=0 # 0 noIC, 2 BHPS
 

@@ -21,11 +21,11 @@ import lhapdf
 #pdf1=lhapdf.mkPDF("CT14nnloIC",1)
 pdf_set1=lhapdf.getPDFSet("CT14nnloIC")
 pdf_set2=lhapdf.getPDFSet("NNPDF40_nnlo_as_01180_1000")
-pdf_set21=lhapdf.getPDFSet("NNPDF40_nnlo_pch_as_01180")
+#pdf_set21=lhapdf.getPDFSet("NNPDF40_nnlo_pch_as_01180")
 
 pdf_set3=lhapdf.getPDFSet("CT10nlo")
-pdf_set4=lhapdf.getPDFSet("CT14nlo")
-pdf_set5=lhapdf.getPDFSet("CT14lo")
+#pdf_set4=lhapdf.getPDFSet("CT14nlo")
+#pdf_set5=lhapdf.getPDFSet("CT14lo")
 
 
 class cr_sec:
@@ -204,9 +204,9 @@ class cr_sec:
 			dup2=ddo2
 			ddo2=tmp
 			
-			#tmp=dupb2
-			#dupb2=ddob2
-			#ddob2=tmp
+			tmp=dupb2
+			dupb2=ddob2
+			ddob2=tmp
 
 		cs2= 4/9*(dup1*dup2 + dupb1*dupb2) + 1/9*(ddo1*ddo2 + ddob1*ddob2) + 1/9*(dst1*dst2 + dstb1*dstb2) 
 		if self.charm == 'yes': cs2= cs2 + 4/9*(dch1*dch2 + dchb1*dchb2)
